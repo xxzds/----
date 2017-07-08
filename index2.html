@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>onload ready 加载顺序</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+
+<body onload="f1();">
+	<img src="https://img.alicdn.com/imgextra/i1/738517069/TB2mpLRnr4npuFjSZFmXXXl4FXa_!!738517069.jpg" width="100px" height="100px" onload="f2();"/>
+</body>
+<script type="text/javascript">
+
+
+/*window.onload=function(){
+	console.log("window onload1");
+};
+window.onload=function(){
+	console.log("window onload2");
+};
+window.onload=function(){
+	console.log("window onload3");
+};
+window.onload=function(){
+	console.log("window onload4");
+};*/
+
+function f1(){
+	console.log("body onload");
+}
+
+function f2(){
+	console.log("img onload");
+}
+
+
+$(window).load(function(){
+	console.log("window load1");
+});
+$(window).load(function(){
+	console.log("window load2");
+});
+
+$(function(){
+	console.log("document ready1");
+});
+$(function(){
+	console.log("document ready2");
+});
+$(function(){
+	console.log("document ready3");
+});
+$(function(){
+	console.log("document ready4");
+});
+</script>
+</html>

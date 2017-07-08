@@ -1,0 +1,34 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>bind多次绑定问题</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		/*function register_click(){
+			$('#button').unbind('click').bind('click',function(){
+				alert('button click');
+			});
+		}*/
+		
+		function register_click(){
+			$('#button').off('click').on('click',function(){
+				alert('button click');
+			});
+		}
+	
+		$(function(){
+			//重复注册
+			register_click();
+			register_click();
+			
+			//模拟点击，会出现两次alert
+			$('#button').click();
+		});
+	</script>
+</head>
+
+<body>
+	<button id="button">按钮</button>
+</body>
+
+</html>

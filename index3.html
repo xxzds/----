@@ -1,0 +1,38 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>测试window.location.href是否有跨域问题</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		function register_click(){
+			$('#button').off('click').on('click',function(){
+				window.location.href='http://www.baidu.com';
+				
+				
+				
+				/*$.ajax({
+				  type: 'POST',
+				  url: 'http://www.baidu.com',
+				  data: {},
+				  success: function(){
+					alert('成功');
+				  },
+				  error:function(){
+					alert('失败');
+				  }
+				});*/
+				//测试发现window.location.href没有跨域问题，ajax有跨域的问题。
+			});
+		}
+	
+		$(function(){
+			register_click();
+		});
+	</script>
+</head>
+
+<body>
+	<button id="button">按钮</button>
+</body>
+
+</html>
