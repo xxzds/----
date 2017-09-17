@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <title>我的优惠券列表展示</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/dropload.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="./js/html5shiv.min.js" ></script>
+    <script type="text/javascript" src="./js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+
+<!--模板 -->
+<div id="template" style="display: none">
+
+    <div class="row item-wrap" onclick="window.location.href='${quanUrl}';">
+            <div class="pic">
+                <img src="${picUrl}"/>
+            </div>
+
+            <div class="item-content">
+                <div class="title">
+                    <strong>${title}</strong>
+                </div>
+                <div style="height: 40px;line-height: 40px;">
+                    <span class="am-text-xs">现价</span>
+                    <span class="line fq-color-gray">￥${price}</span>
+                </div>
+                <div class="fq-color-danger">
+                    <span class="am-text-xs">券后价</span>
+                    <strong class="am-text-default">￥${couponPrice}</strong>
+                </div>
+            </div>
+
+            <div class="quan">
+                <div class="fq-prize">
+                    <div>
+                        <div class="fq-discount">
+                            <span class="am-text-sm fq-text-white">￥</span>
+                            <span class="am-text-xl fq-text-white">${quan}</span>
+                            <a class="am-block am-radius">领券购买</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+<!--content-->
+<div class="container-fluid">
+    <div class="lists"></div>
+</div>
+
+<!--footer-->
+<div class="footer">
+    <a href="javascript:;" onclick="clickCate(35);">服装</a>
+    <a href="javascript:;" onclick="clickCate(36);">母婴</a>
+    <a href="javascript:;" onclick="clickCate(37);">化妆品</a>
+    <a href="javascript:;" onclick="clickCate(38);">居家</a>
+    <a href="javascript:;" onclick="clickCate(39);">鞋包配饰</a>
+    <a href="javascript:;" onclick="clickCate(40);">美食</a>
+    <a href="javascript:;" onclick="clickCate(41);">文体车品</a>
+    <a href="javascript:;" onclick="clickCate(42);">数码家电</a>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/dropload.min.js"></script>
+<script type="text/javascript">
+    //页数
+    var page=0;
+
+    //类别
+    var cateId=35;
+
+    //每页展示的个数
+    var size=10;
+
+    var template = $('#template').html();
+    $('.container-fluid').dropload({
+        scrollArea : window,
+
+        loadDownFn : function(me){
+            page++
+
+            $.ajax({
+                type : "POST",
+                url : "http://www.tooklili.com:81/tookApp/couponItems",
+                data : {
+                    cateId : cateId,
+                    currentPage : page,
+                    pageSize : size
+                },
+                dataType: "json",
+                success : function(result) {
+
+                    var html="";
+                    var data = result.data;
+
+                    if(data.length>0){
+                        data.forEach(function (value,index) {
+                            html+=template.replace("${picUrl}",value.picUrl)
+                                .replace("${quanUrl}",value.quanUrl)
+                                .replace("${price}",value.price)
+                                .replace("${couponPrice}",value.couponPrice)
+                                .replace("${quan}",value.quan)
+                                .replace("${title}",value.title);
+                        });
+                    }else{
+                        // 锁定
+                        me.lock();
+                        // 无数据
+                        me.noData();
+                    }
+
+
+                    $('.lists').append(html);
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error:function(){
+                    alert("网络异常");
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+
+        },
+        loadUpFn:function (me) {
+            console.log(page);
+            $.ajax({
+                type : "POST",
+                url : "http://www.tooklili.com:81/tookApp/couponItems",
+                data : {
+                    cateId : cateId,
+                    currentPage : 1,
+                    pageSize : size
+                },
+                dataType: "json",
+                success : function(result) {
+                    var html="";
+                    var data = result.data;
+                    data.forEach(function (value,index) {
+                        html+=template.replace("${picUrl}",value.picUrl)
+                            .replace("${quanUrl}",value.quanUrl)
+                            .replace("${price}",value.price)
+                            .replace("${couponPrice}",value.couponPrice)
+                            .replace("${quan}",value.quan)
+                            .replace("${title}",value.title);
+                    })
+
+                    $('.lists').html(html);
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+
+                    // 重置页数，重新获取loadDownFn的数据
+                    page = 1;
+                    // 解锁loadDownFn里锁定的情况
+                    me.unlock();
+                    me.noData(false);
+
+
+                },
+                error:function(){
+                    alert("网络异常");
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },
+        threshold : 50
+    });
+
+    function clickCate(id){
+        cateId=id;
+        $('.lists').html("");
+
+
+        $.ajax({
+            type : "POST",
+            url : "http://www.tooklili.com:81/tookApp/couponItems",
+            data : {
+                cateId : cateId,
+                currentPage : 1,
+                pageSize : size
+            },
+            dataType: "json",
+            success : function(result) {
+                var html="";
+                var data = result.data;
+                data.forEach(function (value,index) {
+                    html+=template.replace("${picUrl}",value.picUrl)
+                        .replace("${quanUrl}",value.quanUrl)
+                        .replace("${price}",value.price)
+                        .replace("${couponPrice}",value.couponPrice)
+                        .replace("${quan}",value.quan)
+                        .replace("${title}",value.title);
+                })
+
+                $('.lists').html(html);
+            },
+            error:function(){
+            }
+        });
+    }
+</script>
+</body>
+</html>
