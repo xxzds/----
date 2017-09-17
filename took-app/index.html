@@ -8,7 +8,12 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
 
-    <title>我的优惠券列表展示</title>
+    <title>优惠券-促优网-专注独家正品折扣，返利-上促优，便宜购！</title>
+    <meta content="促优网、返利、淘宝客、优惠券" name="keywords">
+    <meta content="促优网专注独家折扣，每天精选上千款超值商品，天天更新，件件超值。商城优品超值买，优质大牌低价购，相信品牌的品质，购物就来促优网！" name="description">
+    <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico">
+    <link rel="bookmark" href="./images/favicon.ico"/>
+
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/dropload.css">
@@ -22,8 +27,6 @@
 </head>
 <body>
 
-
-
 <!--模板 -->
 <div id="template" style="display: none">
 
@@ -36,7 +39,7 @@
                 <div class="title">
                     <strong>${title}</strong>
                 </div>
-                <div style="height: 40px;line-height: 40px;">
+                <div style="height: 30px;line-height: 30px;">
                     <span class="am-text-xs">现价</span>
                     <span class="line fq-color-gray">￥${price}</span>
                 </div>
@@ -95,7 +98,7 @@
     var size=10;
 
     var template = $('#template').html();
-    $('.container-fluid').dropload({
+    var dropload = $('.container-fluid').dropload({
         scrollArea : window,
 
         loadDownFn : function(me){
@@ -192,34 +195,13 @@
     function clickCate(id){
         cateId=id;
         $('.lists').html("");
+        page=0;
+        // 解锁
+        dropload.unlock();
+        dropload.noData(false);
+        // 重置
+        dropload.resetload();
 
-
-        $.ajax({
-            type : "POST",
-            url : "http://www.tooklili.com:81/tookApp/couponItems",
-            data : {
-                cateId : cateId,
-                currentPage : 1,
-                pageSize : size
-            },
-            dataType: "json",
-            success : function(result) {
-                var html="";
-                var data = result.data;
-                data.forEach(function (value,index) {
-                    html+=template.replace("${picUrl}",value.picUrl)
-                        .replace("${quanUrl}",value.quanUrl)
-                        .replace("${price}",value.price)
-                        .replace("${couponPrice}",value.couponPrice)
-                        .replace("${quan}",value.quan)
-                        .replace("${title}",value.title);
-                })
-
-                $('.lists').html(html);
-            },
-            error:function(){
-            }
-        });
     }
 </script>
 </body>
