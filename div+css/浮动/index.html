@@ -4,19 +4,36 @@
 	<title>浮动</title>
 	
 	<style type="text/css"> 
+		.clearfix:after{
+			    content:".";
+			    clear:both;
+          display:block;
+          height:0;
+          overflow:hidden;
+          visibility:hidden;;
+			}
+
+		.clearfix{
+			*zoom:1;    /* IE/7/6*/
+		}
+
 		
-		div{
-			width:100px;
+		#box{
+			width:400px;
+			border:1px solid blue;
+		}
+		
+		.float{
+			width:100px;			
 			height:100px;
+		  float:left;
 		}
 		
 		#box1{
-			background-color:red;
+			background-color:red;			
 		}
 		#box2{
-			background-color:green;
-		  float:left;
-		  
+			background-color:green;		  
 		}
 		
 		#box3{
@@ -27,10 +44,11 @@
 </head>
 
 <body>
-	<div id="box1">div1</div>
-	<div id="box2">div2</div>
-	<div id="box3">div3</div>
-	
+	<div id="box" class="clearfix">
+		<div id="box1" class="float">div1</div>
+		<div id="box2" class="float">div2</div>
+		<div id="box3" class="float">div3</div>
+	</div>
 </body>
 
 </html>
