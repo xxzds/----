@@ -17,21 +17,14 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/dropload.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="./js/html5shiv.min.js" ></script>
-    <script type="text/javascript" src="./js/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
 <!--模板 -->
 <div id="template" style="display: none">
-
-    <!--${quanUrl}-->
-    <div class="row item-wrap" onclick="window.location.href='./itemDetail.html?a=1&b=1';">
+    <div class="row item-wrap">
+        <input type="hidden" name="numIid" value="${numIid}">
+        <input type="hidden" name="quanUrl" value="${quanUrl}">
             <div class="pic">
                 <img src="${picUrl}"/>
             </div>
@@ -81,10 +74,6 @@
     <a href="javascript:;" onclick="clickCate(41);">文体车品</a>
     <a href="javascript:;" onclick="clickCate(42);">数码家电</a>
 </div>
-
-
-
-
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/dropload.min.js"></script>
@@ -193,6 +182,10 @@
         threshold : 50
     });
 
+    /**
+     * tab的点击事件
+     * @param id
+     */
     function clickCate(id){
         cateId=id;
         $('.lists').html("");
@@ -202,8 +195,16 @@
         dropload.noData(false);
         // 重置
         dropload.resetload();
-
     }
+
+
+    $('.item-wrap').click(function(){
+        debugger;
+        var numIid = $(this).find('input[name="numIid"]').val();
+        var quanUrl =  $(this).find('input[name="quanUrl"]').val();
+        window.location.href='./itemDetail.html?numIid='+numIid;
+
+    })
 </script>
 </body>
 </html>

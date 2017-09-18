@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+</head>
+<body>
+<!--经测试loaction.search只能获取get传输的参数，因get传输的参数在url上-->
+<form id="form" action="./itemDetail.html" method="post">
+    name:<input type="text" id="user" name="user" />
+    password:<input type="password" id="password" name="password"/>
+    <input type="button" id="tijiao" value="提交"/>
+</form>
+
+<script>
+    $('#tijiao').click(function(){
+        $.cookie("user",$('#user').val());
+        $.cookie("password",$('#password').val());
+        $('#form').submit();
+    })
+
+
+</script>
+</body>
+</html>
