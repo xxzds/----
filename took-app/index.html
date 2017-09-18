@@ -22,11 +22,11 @@
 
 <!--模板 -->
 <div id="template" style="display: none">
-    <div class="row item-wrap">
+    <div class="row item-wrap" onclick="toItemDetail(this);">
         <input type="hidden" name="numIid" value="${numIid}">
-        <input type="hidden" name="quanUrl" value="${quanUrl}">
+        <div style="display: none" name="quanJson">${quanJson}</div>
             <div class="pic">
-                <img src="${picUrl}"/>
+                &lt;img src="${picUrl}"/&gt;
             </div>
 
             <div class="item-content">
@@ -76,6 +76,7 @@
 </div>
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.cookie.js"></script>
 <script type="text/javascript" src="./js/dropload.min.js"></script>
 <script type="text/javascript">
     //页数
@@ -111,11 +112,15 @@
                     if(data.length>0){
                         data.forEach(function (value,index) {
                             html+=template.replace("${picUrl}",value.picUrl)
+                                .replace("${quanJson}",JSON.stringify(value))
+                                .replace("${numIid}",value.numIid)
                                 .replace("${quanUrl}",value.quanUrl)
                                 .replace("${price}",value.price)
                                 .replace("${couponPrice}",value.couponPrice)
                                 .replace("${quan}",value.quan)
-                                .replace("${title}",value.title);
+                                .replace("${title}",value.title)
+                                .replace("&lt;","<")
+                                .replace("&gt;",">");
                         });
                     }else{
                         // 锁定
@@ -138,7 +143,6 @@
 
         },
         loadUpFn:function (me) {
-            console.log(page);
             $.ajax({
                 type : "POST",
                 url : "http://www.tooklili.com:81/tookApp/couponItems",
@@ -151,13 +155,18 @@
                 success : function(result) {
                     var html="";
                     var data = result.data;
+
                     data.forEach(function (value,index) {
                         html+=template.replace("${picUrl}",value.picUrl)
+                            .replace("${quanJson}",JSON.stringify(value))
+                            .replace("${numIid}",value.numIid)
                             .replace("${quanUrl}",value.quanUrl)
                             .replace("${price}",value.price)
                             .replace("${couponPrice}",value.couponPrice)
                             .replace("${quan}",value.quan)
-                            .replace("${title}",value.title);
+                            .replace("${title}",value.title)
+                            .replace("&lt;","<")
+                            .replace("&gt;",">");
                     })
 
                     $('.lists').html(html);
@@ -198,13 +207,18 @@
     }
 
 
-    $('.item-wrap').click(function(){
-        debugger;
-        var numIid = $(this).find('input[name="numIid"]').val();
-        var quanUrl =  $(this).find('input[name="quanUrl"]').val();
-        window.location.href='./itemDetail.html?numIid='+numIid;
+    /**
+     * 跳转到商品详情页
+     * @param object
+     */
+    function toItemDetail(object){
+        var numIid = $(object).find('input[name="numIid"]').val();
+        var quanJson =  $(object).find('div[name="quanJson"]').html();
 
-    })
+        //将json字符串存入cookie
+        $.cookie("quanJson",quanJson);
+        window.location.href='./itemDetail.html?numIid='+numIid;
+    }
 </script>
 </body>
 </html>
