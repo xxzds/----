@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/dropload.css">
+    <link rel="stylesheet" href="./css/itemDetail.css">
 </head>
 <body>
 <!--模板 img标签注意，防止浏览器加载一次模板中的src，报错-->
@@ -33,7 +34,24 @@
     </div>
 
 
+    <div>
+        现价<span id="price"></span>
+        优惠券<span id="quan"></span>
+        销量<span id="volume"></span>
+
+    </div>
+
+    <!--图片-->
+    <div id="detailItem">
+        商品详情
+    </div>
     <div id="images"></div>
+
+    <!--footer-->
+    <div class="footer">
+        <a id="one">直接购买</a>
+        <a id="two">淘口令分享</a>
+    </div>
 </div>
 
 
@@ -41,22 +59,81 @@
 
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="./js/jquery.cookie.js"></script>-->
 <script type="text/javascript"  src="./js/getUrlParam.js"></script>
 <script type="text/javascript">
     $(function() {
-        //从cookie中获取上一个页面传入的参数
-        var quanJsonStr = $.cookie("quanJson");
-        //字符串->对象
-        var quanJson = JSON.parse(quanJsonStr);
-        console.log(quanJson);
+        $.ajax({
+            type: "POST",
+            url: "http://www.tooklili.com:81/tookApp/getitem/" + UrlParm.parm("id"),
+            dataType: "json",
+            success: function (result) {
 
-        //主图
-        $('#big-image>img').attr("src",quanJson.picUrl);
-        //标题
-        $('#title>span').html(quanJson.title);
-        //券后价
-        $('#couponPrice>span').html(quanJson.couponPrice);
+                if(!result.success){
+                    alert(result.message);
+                    return;
+                }
+                var data = result.data;
+                console.log(data);
+                if(data==null || data.length<=0) {
+                    alert("暂无数据");
+                    return;
+                }
+
+                //主图
+                $('#big-image>img').attr("src",data.picUrl);
+                //标题
+                $('#title>span').html(data.title);
+                //券后价
+                $('#couponPrice>span').html(data.couponPrice);
+                //现价
+                $('#price').html(data.price);
+                //优惠券
+                $('#quan').html(data.quan);
+                //销量
+                $('#volume').html(data.volume);
+                //直接购买
+                $('.footer>#one').attr('href',data.quanUrl);
+
+                //淘口令分享
+                $('.footer>#two').click(function () {
+                    getTpwd(data.title,data.quanUrl)
+                    
+                });
+
+            },
+            error: function () {
+                alert("网络异常");
+            }
+        });
+        
+        
+        function getTpwd(text,url) {
+            $.ajax({
+                type: "POST",
+                url: "http://www.tooklili.com:81/tookApp/tbk/getTPwd/",
+                data:{
+                    text:text,
+                    url:url
+                },
+                dataType: "json",
+                success: function (result) {
+
+                    if(!result.success){
+                        alert(result.message);
+                        return;
+                    }
+                    var data = result.data;
+                    console.log(data);
+
+                },
+                error: function () {
+                    alert("网络异常");
+                }
+            });
+        }
+
+
 
 
         $.ajax({
@@ -70,6 +147,7 @@
                     return;
                 }
                 var data = result.data;
+                console.log(data);
                 if(data==null || data.length<=0) {
                     alert("暂无数据");
                     return;
@@ -91,6 +169,14 @@
                 alert("网络异常");
             }
         });
+
+
+
+        $('#detailItem').click(function(){
+            $('#images').slideToggle();
+        })
+
+
     });
 
 </script>

@@ -24,7 +24,7 @@
 <div id="template" style="display: none">
     <div class="row item-wrap" onclick="toItemDetail(this);">
         <input type="hidden" name="numIid" value="${numIid}">
-        <div style="display: none" name="quanJson">${quanJson}</div>
+        <input type="hidden" name="id" value="${id}">
             <div class="pic">
                 &lt;img src="${picUrl}"/&gt;
             </div>
@@ -76,7 +76,7 @@
 </div>
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="./js/jquery.cookie.js"></script>-->
 <script type="text/javascript" src="./js/dropload.min.js"></script>
 <script type="text/javascript">
     //页数
@@ -112,8 +112,8 @@
                     if(data.length>0){
                         data.forEach(function (value,index) {
                             html+=template.replace("${picUrl}",value.picUrl)
-                                .replace("${quanJson}",JSON.stringify(value))
                                 .replace("${numIid}",value.numIid)
+                                .replace("${id}",value.id)
                                 .replace("${quanUrl}",value.quanUrl)
                                 .replace("${price}",value.price)
                                 .replace("${couponPrice}",value.couponPrice)
@@ -158,8 +158,8 @@
 
                     data.forEach(function (value,index) {
                         html+=template.replace("${picUrl}",value.picUrl)
-                            .replace("${quanJson}",JSON.stringify(value))
                             .replace("${numIid}",value.numIid)
+                            .replace("${id}",value.id)
                             .replace("${quanUrl}",value.quanUrl)
                             .replace("${price}",value.price)
                             .replace("${couponPrice}",value.couponPrice)
@@ -213,11 +213,8 @@
      */
     function toItemDetail(object){
         var numIid = $(object).find('input[name="numIid"]').val();
-        var quanJson =  $(object).find('div[name="quanJson"]').html();
-
-        //将json字符串存入cookie
-        $.cookie("quanJson",quanJson);
-        window.location.href='./itemDetail.html?numIid='+numIid;
+        var id =  $(object).find('input[name="id"]').val();
+        window.location.href='./itemDetail.html?numIid='+numIid+"&id="+id;
     }
 </script>
 </body>

@@ -1,0 +1,19 @@
+.footer{
+    position: fixed;
+    left:0;
+    bottom:0;
+    display: flex;
+    width: 100%;
+    height: 40px;
+}
+.footer a {
+    position: relative;
+    display: block;
+    -webkit-box-flex: 1;
+    flex: 1;
+    line-height: 40px;
+    text-align: center;
+    color: #666;
+    background-color: #eee;
+    text-decoration: none;
+}
