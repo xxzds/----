@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style type="text/css">
+        canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="load()">
+<canvas id="tutorial" width="800" height="1000"></canvas>
+
+<script type="text/javascript">
+   function load() {
+       var canvas  = document.getElementById("tutorial");
+       var ctx = canvas .getContext("2d");
+
+
+       var item_img = new Image();
+       item_img.setAttribute('crossOrigin', 'anonymous');
+       item_img.src = 'http://img.alicdn.com/imgextra/i3/2229591405/TB2Pqk3wItnpuFjSZFKXXalFFXa_!!2229591405.jpg';
+       item_img.onload = function () {
+           ctx.drawImage(item_img, 0, 0, canvas.width, canvas.width);
+       };
+       item_img.onerror = function () {
+           window.alert('图片加载失败，请重试');
+       };
+
+       /*商品标题*/
+       var str="条纹休闲套装女夏短袖T恤学生运动服宽松大码胖mm跑步短裤两件套";
+       ctx.fillStyle='#605761';
+       ctx.lineWidth=1;
+       ctx.textAlign = 'left';
+       ctx.textBaseline = "top";
+       ctx.font = '28px Helvetica';
+       var lineWidth = 0;
+       var canvasWidth = canvas.width - 60;//计算canvas的宽度
+       var initHeight= canvas.width + 30;//绘制字体距离canvas顶部初始的高度
+       var lastSubStrIndex= 0; //每次开始截取的字符串的索引
+       for(var i = 0;i <= str.length; i++){
+           console.log(ctx.measureText(str[i]).width);
+           lineWidth += ctx.measureText(str[i]).width;
+           if(lineWidth > canvasWidth){
+               ctx.fillText(str.substring(lastSubStrIndex,i),20,initHeight);//绘制截取部分
+               initHeight += 40;//字体的高度
+               lineWidth = 0;
+               lastSubStrIndex = i;
+           }
+           if(i == str.length - 1 ){
+               ctx.fillText(str.substring(lastSubStrIndex,i + 1 ),20,initHeight);
+           }
+       }
+
+       /*原价*/
+       var price = '在售价：599.00';
+       ctx.fillStyle = '#aba0ac';
+       ctx.textAlign = 'left';
+       ctx.font = '30px Helvetica';
+       ctx.textBaseline = "top";
+       ctx.fillText(price,20,initHeight + 30);
+
+       /*删除线*/
+       ctx.strokeStyle = '#aba0ac';
+       ctx.lineWidth = 2; // 改变线的粗细
+       ctx.moveTo(20, initHeight + 46); // 起始点
+       ctx.lineTo(200, initHeight + 46); // 第二点(如果是一条直线的话，就是终点)
+       ctx.stroke();
+
+       /*在售标题*/
+       var end_price_title = '下单价:';
+       ctx.fillStyle = '#aba0ac';
+       ctx.textAlign = 'left';
+       ctx.font = '30px Helvetica';
+       ctx.textBaseline = "top";
+       ctx.fillText(end_price_title,20,initHeight + 80);
+
+       /*在售价格*/
+       var end_price = '449.00';
+       ctx.fillStyle = '#fba137';
+       ctx.textAlign = 'left';
+       ctx.font = '42px Helvetica';
+       ctx.textBaseline = "top";
+       ctx.fillText(end_price,140,initHeight + 72);
+
+       /*优惠券金额*/
+       var end_price = '券150元';
+       ctx.fillStyle = '#fba137';
+       ctx.textAlign = 'left';
+       ctx.font = '30px Helvetica';
+       ctx.textBaseline = "top";
+       ctx.fillText(end_price,220,initHeight + 30);
+
+       /*虚线*/
+       ctx.setLineDash([10,5]);
+       ctx.lineWidth = 1;
+       ctx.strokeStyle = '#aba0ac';
+       ctx.beginPath();
+       ctx.moveTo(10, canvas.height - 50);
+       ctx.lineTo(canvas.width - 10, canvas.height - 50 );
+       ctx.stroke();
+   }
+
+
+
+
+</script>
+</body>
+</html>
