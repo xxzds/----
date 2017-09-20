@@ -1,3 +1,32 @@
+.camera{
+    position:fixed;
+    right:50px;
+    bottom:100px;
+}
+
+#tutorial{
+    display: none;
+    position: fixed;
+    top:100px;
+    left:5px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .footer{
     position: fixed;
     left:0;
