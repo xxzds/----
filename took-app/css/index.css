@@ -93,3 +93,32 @@ img{
     background-color: #eee;
     text-decoration: none;
 }
+
+.am-text-xs {
+    font-size: 1.2rem;
+}
+
+.fq-color-danger {
+    color: #f54d23;
+}
+
+.am-text-default {
+    font-size: 1.6rem;
+}
+
+.line{
+    text-decoration: line-through;
+}
+
+.fq-color-gray {
+    color: #8f8f8f;
+}
+.am-text-sm {
+    font-size: 1.4rem;
+}
+.fq-text-white {
+    color: #FFF;
+}
+.am-text-xl {
+    font-size: 2.4rem;
+}
