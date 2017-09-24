@@ -103,6 +103,98 @@
 }
 
 
+/************回到顶部****************/
+.go-top {
+    display: block;
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    right: 20px;
+    bottom: 64px;
+    z-index: 10000;
+    background-image: url('../images/go_top.png');
+    background-size: contain;
+    opacity: 0;
+    -webkit-transition: bottom .8s ease, opacity .6s ease;
+}
+.top-button-show {
+    bottom: 64px;
+    opacity: 1;
+}
+.top-button-hide {
+    bottom: -64px;
+    opacity: 0;
+}
+.go-top span {
+    position: absolute;
+    bottom: 9px;
+    width: 100%;
+    display: block;
+    height: 12px;
+    line-height: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #333;
+}
+
+/************底部菜单****************/
+.nbmenu {
+    position: fixed;
+    width: 100%;
+    max-width: 640px;
+    height: 50px;
+    line-height: 50px;
+    display: -webkit-box;
+    z-index: 10000;
+    background: #FAFAFA;
+    color: #ffffff;
+    font-size: 12px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.nb-btn1 {
+    bottom: 0;
+    left: 0;
+    color: #666;
+    text-align: center;
+}
+
+.nbnav {
+    position: absolute;
+    z-index: 10001;
+    width: 20%;
+    float: left;
+}
+.nb-btn2 {
+    bottom: 0;
+    left: 18%;
+    color: #666;
+    text-align: center;
+}
+.nb-btn3 {
+    bottom: 0;
+    left: 40%;
+    background: #FB874E;
+    text-align: center;
+}
+.nbnav2 {
+    position: absolute;
+    z-index: 10001;
+    width: 30%;
+    float: left;
+}
+.nb-btn4 {
+    bottom: 0;
+    left: 70%;
+    background: #f54d23;
+    text-align: center;
+}
+
+
+
 
 
 

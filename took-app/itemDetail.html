@@ -15,10 +15,11 @@
     <link rel="bookmark" href="./images/favicon.ico"/>
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/dropload.css">
     <link rel="stylesheet" href="./css/amazeui.css">
     <link rel="stylesheet" href="./css/itemDetail.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <!--模板 img标签注意，防止浏览器加载一次模板中的src，报错-->
@@ -27,16 +28,23 @@
 </div>
 
 <!--后退-->
-<div class="nbleft" style="position: fixed; top: 15px; z-index: 99999; width: 100%; max-width: 46.875px; margin: 0px auto; left: 0px; right: 328.125px;">
+<div class="nbleft" style="position: fixed; top: 15px; z-index: 99999; width: 100%; max-width: 46.875px; margin: 0px auto; left: 0px;">
     <a href="javascript:void(0);" onclick="javascript:history.back(-1);">
         <img src="./images/return.png" style="width:35px;float:left;margin-left:15px;">
     </a>
 </div>
 
 <!--图片分享-->
-<div class="nbright" style="position: fixed; bottom: 105px; z-index: 99999; width: 100%; max-width: 46.875px; margin: 0px auto; left: 328.125px; right: 0px;">
+<div class="nbright" style="position: fixed; top: 65px; z-index: 99999; width: 100%; max-width: 46.875px; margin: 0px auto; right: 0px;">
     <a href="javascript:" class="nb-camera">
         <img src="./images/repic.png" style="width:35px;float:right;margin-right:15px;">
+    </a>
+</div>
+
+<!--回到主页-->
+<div class="nbright" style="position: fixed; top: 15px; z-index: 99999; width: 100%; max-width: 46.875px; margin: 0px auto; right: 0px;">
+    <a href="./">
+        <img src="./images/rehome.png" style="width:35px;float:right;margin-right:15px;">
     </a>
 </div>
 
@@ -65,14 +73,7 @@
     <div id="detailItem">
         <strong>商品详情</strong>
     </div>
-    <div id="images" class="row thumbnail"></div>
-
-
-    <canvas id="tutorial" width="300px" height="600px"></canvas>
-    <!--&lt;!&ndash;图片合成&ndash;&gt;-->
-    <!--<div class="camera">-->
-        <!--图片合成-->
-    <!--</div>-->
+    <div id="images" class="row thumbnail" style="margin-bottom: 50px;"></div>
 
 
     <!--分享图片-->
@@ -92,10 +93,7 @@
     </div>
 
     <!--二维码-->
-    <!--<img id="codeimage" src=""/>-->
-
-
-
+    <input style="display: none;" id="codeimageBase64" />
 
 
     <!--淘口令-->
@@ -148,14 +146,26 @@
 
 
     <!--footer-->
-    <div class="footer">
-        <a id="one">直接购买</a>
-        <a id="two">淘口令分享</a>
+    <!--<div class="footer">-->
+        <!--<a id="one">直接购买</a>-->
+        <!--<a id="two">淘口令分享</a>-->
+    <!--</div>-->
+
+    <!--底部菜单-->
+    <div class="nbmenu">
+        <div class="nbnav nb-btn1"><a href="./"><i class="fa fa-home" style="font-size:12px"></i>&nbsp;首页</a></div>
+        <div class="nbnav nb-btn2" onclick="wxkf()"><i class="fa fa-user-circle" style="font-size:12px"></i>&nbsp;客服</div>
+        <div class="nbnav2 nb-btn3"><a  id="one" style="color:white;font-weight: bolder;">点击购买</a></div>
+        <div class="nbnav2 nb-btn4"><a  id="two" href="javascript:;"  style="color: #ffffff;font-size: 12px;font-weight:bolder;letter-spacing: 0px;">口令购买</a></div>
+    </div>
+
+    <!--回到顶部-->
+    <div class="backTop" onclick="gotop();">
+        <div class="go-top top-button-hide">
+            <span>顶部</span>
+        </div>
     </div>
 </div>
-
-
-
 
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -194,11 +204,19 @@
                 $('#quan').html('￥'+data.quan);
                 //销量
                 $('#volume').html(data.volume);
+
                 //直接购买
-                $('.footer>#one').attr('href',data.quanUrl);
+                var a = navigator.userAgent;
+                console.log(a);
+                if(a.indexOf('wechat')>-1 || a.indexOf("MicroMessenger")>-1){
+                    $('#one').attr('href',"https://t.asczwa.com/taobao?backurl="+encodeURIComponent(data.quanUrl));
+                }else{
+                    $('#one').attr('href',data.quanUrl);
+                }
+
 
                 //淘口令分享
-                $('.footer>#two').click(function () {
+                $('#two').click(function () {
                     getTpwd(data.title,data.quanUrl,data.picUrl)
 
                 });
@@ -292,9 +310,9 @@
 
 
 
-        $('#detailItem').click(function(){
-            $('#images').slideToggle();
-        })
+//        $('#detailItem').click(function(){
+//            $('#images').slideToggle();
+//        })
     });
 
 </script>
@@ -365,8 +383,34 @@
             $('.image_loading').show();
             $('.image_show').hide();
         }
-        canvasApp();
         $(".nb-sharecanvas").css("display","flex");
+
+        //生成二维码
+        $.ajax({
+            type: "POST",
+            url: "http://www.tooklili.com:81/tookApp/getQrCodeBase64",
+            data:{
+                url:window.location.href
+            },
+            dataType: "json",
+            success: function (result) {
+
+                $('#codeimageBase64').val(result.data);
+
+                //生成图片
+                canvasApp();
+
+            },
+            error: function () {
+                alert("网络异常");
+            }
+        });
+
+
+
+
+
+
 
 
     });
@@ -406,10 +450,7 @@
             ctx.drawImage(item_img, 0, 0, canvas.width, canvas.width);
             var code_img = new Image();
             code_img.setAttribute('crossOrigin', 'anonymous');
-
-
-//            $('#codeimage').attr('src')
-            code_img.src = $('#big-image>img').attr("src");
+            code_img.src = $('#codeimageBase64').val();
             code_img.onerror = function () {
                 $('.image_loading').hide();
                 $('.image_show').hide();
@@ -441,7 +482,7 @@
                     }
                 }
 
-                var price = "原价："+$('#couponPrice').html();
+                var price = "原价："+$('#price').html();
                 ctx.fillStyle = '#aba0ac';
                 ctx.textAlign = 'left';
                 ctx.font = '30px Helvetica';
@@ -459,7 +500,7 @@
                 ctx.textBaseline = "top";
                 ctx.fillText(end_price_title, 20, initHeight + 80);
                 //券后价
-                var end_price = $('#price').html();
+                var end_price = $('#couponPrice').html();
                 ctx.fillStyle = '#fba137';
                 ctx.textAlign = 'left';
                 ctx.font = '42px Helvetica';
@@ -503,6 +544,20 @@
         }
 
     }
+
+</script>
+<script>
+    function gotop(){
+        setTimeout('$("html,body").animate({scrollTop:$("body").offset().top},500);',500);
+        $(".go-top").addClass("top-button-hide").removeClass("top-button-show");
+    }
+    window.addEventListener("scroll", function (event) {
+        if (document.body.scrollTop > 500) {
+            $(".go-top").removeClass("top-button-hide").addClass("top-button-show");
+        } else {
+            $(".go-top").addClass("top-button-hide").removeClass("top-button-show");
+        }
+    });
 
 </script>
 
