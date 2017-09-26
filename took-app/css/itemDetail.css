@@ -1,18 +1,54 @@
-.camera{
-    position:fixed;
-    right:50px;
-    bottom:100px;
+body {
+    font-family: "Microsoft YaHei","Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    font-size: 14px;
+    background: #ececec;
+    color: #666;
+    height: 100%;
 }
 
-#tutorial{
-    display: none;
-    position: fixed;
-    top:100px;
-    left:5px;
-    z-index: 1;
-    background-color: #fff;
+.main {
+    background: none repeat scroll 0 0 rgba(236, 236, 236, 1);
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+    position: relative;
+    width: 100%;
 }
 
+.allpreContainer {
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+}
+
+.anim_fade_image {
+    -webkit-animation-name: fadeInOut;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-direction: alternate;
+    animation-iteration-count: 1;
+}
+
+.goodsopenview {
+    position: relative;
+    background: #fff;
+}
+
+#title{
+    margin-top: 10px;
+    font-size: 16px;
+    height: 40px;
+    color: #444;
+    font-weight: bold;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+
+
+
+/************淘口令弹窗****************/
 .am-modal-hd .am-close {
     font-size: 36px;
     top: 8px;
@@ -194,36 +230,66 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.footer{
-    position: fixed;
-    left:0;
-    bottom:0;
-    display: flex;
+/************商品详情****************/
+.goodsshow {
+    margin-top: 15px;
+    background: #fff;
+    margin-bottom: 50px;
     width: 100%;
-    height: 40px;
+    max-width: 750px;
 }
-.footer a {
-    position: relative;
+
+.goodsshow .seemore {
     display: block;
-    -webkit-box-flex: 1;
-    flex: 1;
+    height: 40px;
+    color: #444;
     line-height: 40px;
-    text-align: center;
-    color: #666;
-    background-color: #eee;
-    text-decoration: none;
+    font-size: 14px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    background: url(../images/icon_ab.png) no-repeat 95% center/10px;
+    border-bottom: 1px solid #f0f0f0;
 }
+
+.jump {
+    float: left;
+    position: relative;
+    -webkit-animation: jump 1s linear 0s;
+    animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+
+@-webkit-keyframes jump
+{
+    0%{
+        top:0px;
+        color:red;
+    }
+    50%{
+        top:-2px;
+        color:green;
+    }
+    100%{
+        top:2px;
+        color:blue;
+    }
+}
+
+.goodsdetail {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    font-size: 16px;
+    max-width: 750px;
+}
+.goodsdetail p {
+    margin-top: 15px;
+}
+
+

@@ -7,16 +7,9 @@
 }
 
 .am-text-default {
-    font-size: 1.6rem;
+    font-size: 2.0rem;
 }
 
-.line{
-    text-decoration: line-through;
-}
-
-.fq-color-gray {
-    color: #8f8f8f;
-}
 .am-text-sm {
     font-size: 1.4rem;
 }
@@ -40,19 +33,3 @@ a:hover, a:active {
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
 }
-
-
-.glass{
-    background-color: #666 ;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0; /*FF IE7*/
-    filter: alpha(opacity=50) ; /*IE*/
-    opacity: 0.5; /*FF*/
-    z-index: 1;
-    position: fixed !important; /*FF IE7*/
-    position: absolute; /*IE6*/
-    display : block;
-}
-
