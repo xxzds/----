@@ -292,4 +292,130 @@ body {
     margin-top: 15px;
 }
 
+/**本栏目更多精品**/
+.item-recommend {
+    height: 100%;
+    margin: 3% auto;
+    clear: both;
+    background: #fff;
+    padding-bottom: 3%;
+    border-top: #e5e5e5 solid 1px;
+    border-bottom: #e5e5e5 solid 1px;
+}
 
+
+.clear {
+    zoom: 1;
+    clear: both;
+}
+
+.clear:after, .clear:before {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+    overflow: hidden;
+}
+
+.goodsshow .seemore {
+    display: block;
+    height: 40px;
+    color: #444;
+    line-height: 40px;
+    font-size: 14px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    background: url(../images/icon_ab.png) no-repeat 95% center/10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.seemore a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.seemore a:hover{
+    color:#fff;
+    text-decoration:none;
+}
+
+.goods-list-nb {
+    width: 100%;
+}
+
+ul, li {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    list-style: none;
+}
+
+.goods-list-nb li {
+    float: left;
+    width: 47%;
+    position: relative;
+    margin: 2% 0 0 2%;
+    background: rgba(255, 255, 255, 1);
+}
+
+.goods-list-nb .goods-a {
+    display: block;
+    position: relative;
+}
+
+
+.goods-list-nb li img {
+    width: 100%;
+    position: relative;
+    display: inherit;
+}
+
+.lingquan {
+    width: 60px;
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border-radius: 1px;
+    text-align: center;
+}
+
+.lingquan a span {
+    width: 60px;
+    height: 20px;
+    font-size: 12px;
+    display: block;
+    background: #f9117e;
+    color: #fff;
+    overflow: hidden;
+    line-height: 20px;
+}
+
+.goods-list-nb li h3 {
+    width: 100%;
+    font-size: 12px;
+    font-family: "Microsoft YaHei","黑体-简";
+    font-weight: 300;
+    color: #808080;
+    height: 36px;
+    line-height: 36px;
+    background: rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    text-indent: 5px;
+}
+
+.list-price {
+    width: 96%;
+    height: 26px;
+    line-height: 18px;
+    position: relative;
+    bottom: 0;
+    margin: 0 2%;
+}
+
+.buy .price-new {
+    color: #f8285c;
+}
