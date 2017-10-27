@@ -10,7 +10,7 @@ $(function() {
     $('.nbleft').fadeIn(500);
     $('.nbright').fadeIn(600);
     var nbtoplrw2 = $('.goodsopenview').width();
-    $('.allpreContainer').css('height', nbtoplrw2);
+    /*$('.allpreContainer').css('height', nbtoplrw2);*/
 });
 
 $(function() {
@@ -362,7 +362,11 @@ function gotop() {
 }
 window.addEventListener("scroll",
     function(event) {
-        if (document.body.scrollTop > 500) {
+        var scrollTop = window.pageYOffset
+            || document.documentElement.scrollTop
+            || document.body.scrollTop
+            || 0
+        if (scrollTop > 500) {
             $(".go-top").removeClass("top-button-hide").addClass("top-button-show");
         } else {
             $(".go-top").addClass("top-button-hide").removeClass("top-button-show");
@@ -450,10 +454,10 @@ $(function(){
             if(data.length>0){
                 data.forEach(function (value,index) {
                     var itemDetailUrl='./itemDetail.html?numIid='+value.numIid+"&id="+value.id+"&cateId="+value.cateId;
-                    html+=template.replace("${itemDetailUrl}",itemDetailUrl)
+                    html+=template.replace(/\${itemDetailUrl}/g,itemDetailUrl)
                         .replace("${picUrl}",value.picUrl)
                         .replace("${couponPrice}",value.couponPrice)
-                        .replace("${volume}",value.volume)
+                        .replace("${volume}",parseInt(value.volume)+parseInt(100))
                         .replace("${quan}",value.quan)
                         .replace("${title}",value.title)
                         .replace("&lt;","<")
@@ -461,11 +465,23 @@ $(function(){
                 });
             }
             $('#list_box').html(html);
+
+            //设置图片的宽度和高度相等
+            $('.loazd').each(function () {
+                $(this).css('height',$(this).css('width'));
+            });
         },
         error: function () {
             alert("网络异常");
         }
     });
+
+    //屏幕改变时，改变图片的高度
+    window.onresize=function(){
+        $('.loazd').each(function () {
+            $(this).css('height',$(this).css('width'));
+        });
+    }
 });
 
 //超级搜
