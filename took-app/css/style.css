@@ -1,3 +1,9 @@
+body{
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+}
+
 .am-text-xs {
     font-size: 1.2rem;
 }
@@ -34,7 +40,28 @@ a:hover, a:active {
     text-decoration: none;
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, button, textarea, p, blockquote, th, td, button {
     margin: 0;
     padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.clear {
+    zoom: 1;
+    clear: both;
+}
+
+/*清除浮动*/
+.clear:after, .clear:before {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+    overflow: hidden;
 }

@@ -38,6 +38,7 @@ var dropload = $('.container-fluid').dropload({
                             .replace("${couponPrice}",value.couponPrice)
                             .replace("${quan}",value.quan)
                             .replace("${title}",value.title)
+                            .replace("${cateId}",value.cateId)
                             .replace("&lt;","<")
                             .replace("&gt;",">");
                     });
@@ -84,6 +85,7 @@ var dropload = $('.container-fluid').dropload({
                         .replace("${couponPrice}",value.couponPrice)
                         .replace("${quan}",value.quan)
                         .replace("${title}",value.title)
+                        .replace("${cateId}",value.cateId)
                         .replace("&lt;","<")
                         .replace("&gt;",">");
                 })
@@ -133,5 +135,6 @@ function clickCate(id){
 function toItemDetail(object){
     var numIid = $(object).find('input[name="numIid"]').val();
     var id =  $(object).find('input[name="id"]').val();
-    window.location.href='./itemDetail.html?numIid='+numIid+"&id="+id;
+    var cateId = $(object).find('input[name="cateId"]').val();
+    window.location.href='./itemDetail.html?numIid='+numIid+"&id="+id+"&cateId="+cateId;
 }

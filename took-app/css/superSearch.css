@@ -1,0 +1,221 @@
+#wrap_list {
+    display: none;
+    margin: 0 auto;
+    width: 10rem;
+}
+
+.search {
+    position: relative;
+    padding: .16667rem 0 0 .24rem;
+    width: 9.76rem;
+    height: .9rem;
+    background: #ebebeb;
+}
+
+.search-box {
+    position: relative;
+    width: 8.4rem;
+    height: .73333rem;
+    border-radius: .73333rem;
+    background: #fff;
+}
+.search-ipt {
+    display: inline-block;
+    margin-left: .66667rem;
+    width: 7rem;
+    height: .73333rem;
+    outline: 0;
+    border: none;
+    line-height: .73333rem;
+}
+
+input, select, textarea {
+    font-size: 100%;
+}
+
+.search-reset {
+    display: inline-block;
+    width: .53333rem;
+    height: .53333rem;
+    border: none;
+    background: 0 0;
+    text-align: center;
+    line-height: .53333rem;
+}
+
+[data-dpr="1"] .f12 {
+    font-size:12px
+}
+[data-dpr="2"] .f12 {
+    font-size:24px
+}
+[data-dpr="3"] .f12 {
+    font-size:36px
+}
+[data-dpr="1"] .f14 {
+    font-size:14px
+}
+[data-dpr="2"] .f14 {
+    font-size:28px
+}
+[data-dpr="3"] .f14 {
+    font-size:42px
+}
+[data-dpr="1"] .f16 {
+    font-size:16px
+}
+[data-dpr="2"] .f16 {
+    font-size:32px
+}
+[data-dpr="3"] .f16 {
+    font-size:48px
+}
+[data-dpr="1"] .f18 {
+    font-size:18px
+}
+[data-dpr="2"] .f18 {
+    font-size:36px
+}
+[data-dpr="3"] .f18 {
+    font-size:54px
+}
+[data-dpr="1"] .f30 {
+    font-size:30px
+}
+[data-dpr="2"] .f30 {
+    font-size:60px
+}
+[data-dpr="3"] .f30 {
+    font-size:90px
+}
+[data-dpr="1"] .f90 {
+    font-size:90px
+}
+[data-dpr="2"] .f90 {
+    font-size:180px
+}
+[data-dpr="3"] .f90 {
+    font-size:270px
+}
+
+.search-cancel {
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    padding: .13333rem;
+    color: #777;
+}
+
+.search-icon {
+    position: absolute;
+    top: .16667rem;
+    left: .16667rem;
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    background-size: 100% 100%;
+}
+
+.result-none span,.search-icon {
+    background-image:url('data:image/png; base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAF76W4GAAAAA3NCSVQICAjb4U/gAAAAk1BMVEVmZmb39/e1tbWRkZHb29vBwcGmpqZycnLp6en////MzMyhoaF2dnbj4+O9vb2fn5+vr69ubm56enr7+/vZ2dmtra3t7e1sbGyFhYW3t7fn5+fd3d1qamrHx8e7u7vv7+/////5+fl0dHSjo6OVlZW/v7/h4eHR0dHExMTr6+t4eHhwcHBmZmanp6fx8fGTk5PPz89rWxn2AAAACXBIWXMAAAsSAAALEgHS3X78AAAAF3RFWHRDcmVhdGlvbiBUaW1lADIwMTcuNC4yOM/4AYQAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAABZ0lEQVQokXVS7W6DMAxMKBtY4SOJC0wUOpHA2q5S1fd/uiUhAVo0/7BzOfnsCxAwQVyq3QmhIv6utQlN4haWAPHDHCKYg4AwWfpuEzVZGAaQmKos4kDQ1gzI6Cs1F0/XWMSggwC3tZUdESzoTB9eUlgJcukhRGNxkS44mTeiHup0tkCljnPTVVWwLuqi0q/Y8+WddDINuBaxqcjYxrGNyD0CKU+hVTp8X6Suto+sA3JucbfgY2GxxID1YHHqjQNm8zzmHzv59vtF8poffwDVEPzEvDAqaJ1v/VAxvPobvlZcX6Yomi713j7QSalDf0NM+1GJM32hadlNmxtaiJGudKvYhnQ2mGwDXcsDvAfqzL8AKbp0R8MxKTwdEdzTecY9/RT9nr42cViNqdM7e/vly+ZwDoPCYmcR4UrDYxQsXTcYtKjohjYNLU+aJMuS5tN+GVoJ90Vh94+FAZXiw/+0G8Hxf9oo1Ah/BJ8pSn4OomgAAAAASUVORK5CYII=');
+    background-repeat:no-repeat;
+}
+
+.recommend {
+    padding: .33333rem;
+    color: #404040;
+}
+
+.recommend dd a {
+    display: inline-block;
+    margin: 0 .24rem .24rem 0;
+    padding: 0 .3rem;
+    height: .7rem;
+    border-radius: .7rem;
+    background: #f7f7f7;
+    color: #404040;
+    line-height: .7rem;
+}
+
+.result-img {
+    position: relative;
+    float: left;
+    width: 2.9rem;
+    height: 2.9133rem;
+    color: #999;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: 0px #e5e5e5 solid;
+    padding: .06533rem 0.05rem .06533rem 0.05rem;
+}
+
+.result-desc {
+    position: relative;
+    float: right;
+    padding: .06533rem .0rem .06533rem .0rem;
+    width: 6.74rem;
+    height: 2.9133rem;
+    border-bottom: 1px #e5e5e5 solid;
+    color: #999;
+    background: #fff;
+}
+
+.result-img img {
+    width: 2.88rem;
+    height: 2.88rem;
+    vertical-align: middle;
+}
+
+.result-desc h3 {
+    overflow: hidden;
+    width: 4.8rem;
+    height: .53333rem;
+    color: #404040;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: .53333rem;
+}
+
+.result-desc p {
+    margin: .2rem 0;
+    line-height: .53333rem;
+}
+
+.result-desc p strong {
+    color: #404040;
+}
+
+.result-desc p span {
+    display: inline-block;
+    margin-right: .24rem;
+    padding: .02667rem .02667rem .02667rem .13333rem;
+    border-radius: .06667rem;
+    background: #f50;
+    color: #fff;
+}
+
+.result-desc p i {
+    display: inline-block;
+    margin-left: .06667rem;
+    padding: 0 .06667rem;
+    border-radius: 0 .06667rem .06667rem 0;
+    background: #fff;
+    color: #f50;
+    font-style: normal;
+}
+
+.result-desc button {
+    position: absolute;
+    top: 1.5rem;
+    padding: .16667rem .56667rem;
+    border: none;
+    border-radius: .06667rem;
+    color: #fff;
+    margin-top: 20px;
+    background: #f80;
+    right: .12222rem;
+}
+
+.results li {
+    height: 3.05rem;
+}

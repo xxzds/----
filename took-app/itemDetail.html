@@ -60,6 +60,14 @@
         </a>
     </div>
 
+    <!--超级搜-->
+    <div class="nbright" style="display:none;position:fixed;top:115px;z-index:99999;width:100%;max-width:320px;margin:0 auto;left:0px;right:0px;">
+        <a href="javascript:" data-info="./superSearch.html" class="nb-so">
+            <img class="btndh" src="./images/reso.png" style="width:35px;float:right;margin-right:15px;">
+        </a>
+    </div>
+
+
 
 
     <div class="goodsopenview">
@@ -134,25 +142,29 @@
         </div>
     </div>
 
+    <!--更多精品-->
+    <div id="moreItemTemplate" style="display: none">
+        <li class="picCon"><a class="goods-a nbjump" href="${itemDetailUrl}" target="_self">
+            &lt;img class="loazd" src="${picUrl}"/&gt;</a>
+            <a href="${itemDetailUrl}" target="_self">
+                <h3>${title}</h3>
+            </a><div class="list-price buy"><a href="${itemDetailUrl}" target="_self">
+                <span class="price-new" style="font-size:14px"><i>券后 ￥</i>${couponPrice}</span>
+            </a><a id="J_weixin" href="${itemDetailUrl}" target="_self" class="coupon"><span class="good-btn" style="color:#999">销量${volume}</span></a>
+            </div>
+            <div class="lingquan">
+                <a id="J_weixin" href="${itemDetailUrl}" target="_self" class="coupon"><span style="">${quan}元券</span></a>
+            </div>
+        </li>
+
+    </div>
+
     <div class="normal item-recommend clear goodsshow" style="padding-bottom:60px;margin-top:-35px;display:block" id="cnxh">
         <a class="seemore" href="javascript:;">
             <span>本栏目更多精品</span>
         </a>
         <section class="goods">
             <ul class="goods-list-nb list_box clear" id="list_box">
-                <li class="picCon"><a class="goods-a nbjump" href="" target="_self">
-                    <img class="loazd" src="http://img.alicdn.com/imgextra/i3/1055530397/TB2aqIYzEdnpuFjSZPhXXbChpXa_!!1055530397.jpg_210x210.jpg"></a>
-                    <a href="https://wx.yuedotech.cn/app/index.php?i=31&amp;c=entry&amp;do=show_api&amp;m=bsht_tbk&amp;iid=554423348480&amp;yj=4.158&amp;tit=5L2w6I2J5LiW5a625rSX6Z2i5aW255S35aWz6KGl5rC05L_bd5rm_a576O55m95reh5paR56Wb5paR6Iac5Y245aaG5o6n5rK556Wb55eY5rex5bGC5riF5rSB&amp;wenan=57qv5aSp54S25qSN54mp6YWN5pa577yM5rip5ZKM5rSB6Z2i77yM5rC05ram5L_bd5rm_a77yM5rex5bGC5riF5rSB77yM5bmz6KGh5rC05rK577yM576O55m96IKM6IKk77yM5reh5paR5o_bQ5Lqu77yM5LiA5qy_b6IO956Wb5paR55qE5rSX6Z2i5aW277yB&amp;pic=http://img.alicdn.com/imgextra/i3/1055530397/TB2aqIYzEdnpuFjSZPhXXbChpXa_!!1055530397.jpg&amp;fee1=49.90&amp;fee2=9.90&amp;qfee=40&amp;fl=33&amp;isdx=0&amp;shopid=0&amp;isnb=1&amp;maijia_id=1055530397&amp;isnice=2&amp;stype=5&amp;shopyuji=&amp;hdk=1&amp;actid=d87f8b83b34a414f82b4528cc6592d05&amp;vid=0&amp;q_yl=100000&amp;q_zl=100000&amp;qcid=4&amp;istm=1" target="_self">
-                        <h3>佰草世家洗面奶男女补水保湿美白淡斑祛斑膜卸妆控油祛痘深层清洁</h3>
-                    </a><div class="list-price buy"><a href="https://wx.yuedotech.cn/app/index.php?i=31&amp;c=entry&amp;do=show_api&amp;m=bsht_tbk&amp;iid=554423348480&amp;yj=4.158&amp;tit=5L2w6I2J5LiW5a625rSX6Z2i5aW255S35aWz6KGl5rC05L_bd5rm_a576O55m95reh5paR56Wb5paR6Iac5Y245aaG5o6n5rK556Wb55eY5rex5bGC5riF5rSB&amp;wenan=57qv5aSp54S25qSN54mp6YWN5pa577yM5rip5ZKM5rSB6Z2i77yM5rC05ram5L_bd5rm_a77yM5rex5bGC5riF5rSB77yM5bmz6KGh5rC05rK577yM576O55m96IKM6IKk77yM5reh5paR5o_bQ5Lqu77yM5LiA5qy_b6IO956Wb5paR55qE5rSX6Z2i5aW277yB&amp;pic=http://img.alicdn.com/imgextra/i3/1055530397/TB2aqIYzEdnpuFjSZPhXXbChpXa_!!1055530397.jpg&amp;fee1=49.90&amp;fee2=9.90&amp;qfee=40&amp;fl=33&amp;isdx=0&amp;shopid=0&amp;isnb=1&amp;maijia_id=1055530397&amp;isnice=2&amp;stype=5&amp;shopyuji=&amp;hdk=1&amp;actid=d87f8b83b34a414f82b4528cc6592d05&amp;vid=0&amp;q_yl=100000&amp;q_zl=100000&amp;qcid=4&amp;istm=1" target="_self">
-                        <span class="price-new" style="font-size:14px"><i>券后 ￥</i>9.90</span>
-                    </a><a id="J_weixin" href="https://wx.yuedotech.cn/app/index.php?i=31&amp;c=entry&amp;do=show_api&amp;m=bsht_tbk&amp;iid=554423348480&amp;yj=4.158&amp;tit=5L2w6I2J5LiW5a625rSX6Z2i5aW255S35aWz6KGl5rC05L_bd5rm_a576O55m95reh5paR56Wb5paR6Iac5Y245aaG5o6n5rK556Wb55eY5rex5bGC5riF5rSB&amp;wenan=57qv5aSp54S25qSN54mp6YWN5pa577yM5rip5ZKM5rSB6Z2i77yM5rC05ram5L_bd5rm_a77yM5rex5bGC5riF5rSB77yM5bmz6KGh5rC05rK577yM576O55m96IKM6IKk77yM5reh5paR5o_bQ5Lqu77yM5LiA5qy_b6IO956Wb5paR55qE5rSX6Z2i5aW277yB&amp;pic=http://img.alicdn.com/imgextra/i3/1055530397/TB2aqIYzEdnpuFjSZPhXXbChpXa_!!1055530397.jpg&amp;fee1=49.90&amp;fee2=9.90&amp;qfee=40&amp;fl=33&amp;isdx=0&amp;shopid=0&amp;isnb=1&amp;maijia_id=1055530397&amp;isnice=2&amp;stype=5&amp;shopyuji=&amp;hdk=1&amp;actid=d87f8b83b34a414f82b4528cc6592d05&amp;vid=0&amp;q_yl=100000&amp;q_zl=100000&amp;qcid=4&amp;istm=1" target="_self" class="coupon"><span class="good-btn" style="color:#999">销量189100</span></a>
-                    </div>
-                    <div class="lingquan">
-                        <a id="J_weixin" href="https://wx.yuedotech.cn/app/index.php?i=31&amp;c=entry&amp;do=show_api&amp;m=bsht_tbk&amp;iid=554423348480&amp;yj=4.158&amp;tit=5L2w6I2J5LiW5a625rSX6Z2i5aW255S35aWz6KGl5rC05L_bd5rm_a576O55m95reh5paR56Wb5paR6Iac5Y245aaG5o6n5rK556Wb55eY5rex5bGC5riF5rSB&amp;wenan=57qv5aSp54S25qSN54mp6YWN5pa577yM5rip5ZKM5rSB6Z2i77yM5rC05ram5L_bd5rm_a77yM5rex5bGC5riF5rSB77yM5bmz6KGh5rC05rK577yM576O55m96IKM6IKk77yM5reh5paR5o_bQ5Lqu77yM5LiA5qy_b6IO956Wb5paR55qE5rSX6Z2i5aW277yB&amp;pic=http://img.alicdn.com/imgextra/i3/1055530397/TB2aqIYzEdnpuFjSZPhXXbChpXa_!!1055530397.jpg&amp;fee1=49.90&amp;fee2=9.90&amp;qfee=40&amp;fl=33&amp;isdx=0&amp;shopid=0&amp;isnb=1&amp;maijia_id=1055530397&amp;isnice=2&amp;stype=5&amp;shopyuji=&amp;hdk=1&amp;actid=d87f8b83b34a414f82b4528cc6592d05&amp;vid=0&amp;q_yl=100000&amp;q_zl=100000&amp;qcid=4&amp;istm=1" target="_self" class="coupon"><span style="">40元券</span></a>
-                    </div>
-                </li>
-
             </ul>
         </section>
     </div>

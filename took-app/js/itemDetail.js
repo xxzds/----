@@ -430,3 +430,57 @@ function kf() {
     $('.layer-anim').css('margin', 'auto');
 
 }
+
+//本栏目更多精品
+$(function(){
+    $.ajax({
+        type: "POST",
+        url: "http://www.tooklili.com:81/tookApp/getRandomItemByCateId",
+        dataType: "json",
+        data:{
+            cateId:UrlParm.parm("cateId"),
+            size:4
+        },
+        success: function (result) {
+
+            var html="";
+            var data = result.data;
+            var template = $('#moreItemTemplate').html();
+
+            if(data.length>0){
+                data.forEach(function (value,index) {
+                    var itemDetailUrl='./itemDetail.html?numIid='+value.numIid+"&id="+value.id+"&cateId="+value.cateId;
+                    html+=template.replace("${itemDetailUrl}",itemDetailUrl)
+                        .replace("${picUrl}",value.picUrl)
+                        .replace("${couponPrice}",value.couponPrice)
+                        .replace("${volume}",value.volume)
+                        .replace("${quan}",value.quan)
+                        .replace("${title}",value.title)
+                        .replace("&lt;","<")
+                        .replace("&gt;",">");
+                });
+            }
+            $('#list_box').html(html);
+        },
+        error: function () {
+            alert("网络异常");
+        }
+    });
+});
+
+//超级搜
+$(function(){
+    $(document).delegate(".nb-so", "click", function () {
+        var thisdatainfo = $('.nb-so').attr('data-info');
+
+        layer.open({
+            title:'确认操作'
+            ,content: '是否使用 <b>超级搜索</b> 查询本商品更多优惠？'
+            ,btn: ['确认', '取消']
+            ,yes: function(index){
+                window.location.href=thisdatainfo;
+                layer.close(index);
+            }
+        });
+    });
+});
