@@ -21,7 +21,6 @@ $(function() {
         url: "http://www.tooklili.com:81/tookApp/getitem/" + UrlParm.parm("id"),
         dataType: "json",
         success: function(result) {
-
             if (!result.success) {
                 alert(result.message);
                 return;
@@ -44,7 +43,7 @@ $(function() {
             //优惠券
             $('#quan').html('￥' + data.quan);
             //销量
-            //                $('#volume').html(data.volume);
+            //$('#volume').html(data.volume);
             $('.goodsdetail>p').html(data.intro);
 
             //直接购买
@@ -61,6 +60,10 @@ $(function() {
                 getTpwd(data.title, data.quanUrl, data.picUrl)
 
             });
+
+            //超级搜地址
+            $('.nb-so').attr('data-info','./superSearch.html?title='+encodeURIComponent(data.title));
+
 
         },
         error: function() {
