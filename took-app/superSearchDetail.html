@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+
+
+    <title>优惠券详情页-促优网-专注独家正品折扣，返利-上促优，便宜购！</title>
+    <meta content="促优网、返利、淘宝客、优惠券" name="keywords">
+    <meta content="促优网专注独家折扣，每天精选上千款超值商品，天天更新，件件超值。商城优品超值买，优质大牌低价购，相信品牌的品质，购物就来促优网！" name="description">
+    <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico">
+    <link rel="bookmark" href="./images/favicon.ico"/>
+
+    <link rel="stylesheet" href="./css/dropload.css">
+    <link rel="stylesheet" href="./css/amazeui.min.css">
+    <link rel="stylesheet" href="./css/itemDetail.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!--<script>-->
+    <!--var deviceWidth = document.documentElement.clientWidth;-->
+    <!--if (deviceWidth > 750) deviceWidth = 750;-->
+    <!--document.documentElement.style.fontSize = deviceWidth / 7.5 + "px";-->
+    <!--document.documentElement.style.width = "100%";-->
+    <!--</script>-->
+</head>
+<body>
+<!--content-->
+<div class="main" style="max-width:640px;">
+    <!--后退-->
+    <div class="nbleft" style="display:none;position:fixed;top:15px;z-index:99999;width:100%;max-width:320px;margin:0 auto;left:0px;right:0px;">
+        <a href="javascript:void(0);" onclick="javascript:history.back(-1);">
+            <img src="./images/return.png" style="width:35px;float:left;margin-left:15px;">
+        </a>
+    </div>
+
+
+
+    <!--回到主页-->
+    <div class="nbright" style="display:none;position:fixed;top:15px;z-index:99999;width:100%;max-width:320px;margin:0 auto;left:0px;right:0px;">
+        <a href="./">
+            <img src="./images/rehome.png" style="width:35px;float:right;margin-right:15px;">
+        </a>
+    </div>
+
+    <!--图片分享-->
+    <div class="nbright" style="display:none;position:fixed;top:65px;z-index:99999;width:100%;max-width:320px;margin:0 auto;left:0px;right:0px;">
+        <a href="javascript:" class="nb-camera">
+            <img src="./images/repic.png" style="width:35px;float:right;margin-right:15px;">
+        </a>
+    </div>
+
+    <!--超级搜-->
+    <div class="nbright" style="display:none;position:fixed;top:115px;z-index:99999;width:100%;max-width:320px;margin:0 auto;left:0px;right:0px;">
+        <a href="javascript:" class="nb-so">
+            <img class="btndh" src="./images/reso.png" style="width:35px;float:right;margin-right:15px;">
+        </a>
+    </div>
+
+
+
+
+    <div class="goodsopenview">
+        <div class="allpreContainer anim_fade_image">
+            <div id="big-image"><img src="" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div style="background-color: #fff; margin:0px 10px;">
+            <div id="title"></div>
+            <div class="fq-color-danger" style="margin: 10px 0;">
+                <div style="float:left;">
+                    <!--<span class="am-text-xs">券后包邮</span>-->
+                    <span class="am-text-default"><strong id="couponPrice"></strong></span>
+                    <span style="font-size:12px;color:#555555;text-decoration:line-through;padding-right:20px" id="price"></span>
+                </div>
+
+                <div class="count-price"><div class="count-price-bgm"><span id="quan"></span><s>优惠券</s></div></div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+
+        <style>
+            .count-price {
+                display: inline-block;
+                vertical-align: top;
+                float: right;
+                margin-top: 1px;
+                margin-bottom: 1px;
+            }
+            .count-price .count-price-bgm {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                height: 21px;
+                background: url(./images/nbyhq_price.png) no-repeat center;
+                background-size: 100% 100%;
+            }
+            .count-price .count-price-bgm span {
+                display: inline-block;
+                height: 16px;
+                font-size: 11px;
+                line-height: 15px;
+                background: #fff;
+                margin: 1px;
+                padding: 2px 5px 2px 5px;
+                color: #FE814B;
+            }
+            .count-price .count-price-bgm s {
+                font-size: 11px;
+                color: #FFF;
+                text-decoration: none;
+                font-family: "Microsoft YaHei"!important;
+                font-weight: 400;
+                padding: 4px;
+            }
+        </style>
+    </div>
+
+    <!--图片-->
+    <div class="goodsshow" style="display:block" id="tabtxtthis">
+        <a class="seemore" href="javascript:;" id="nbmore" data-id="" nbok="0">
+            <span id="tabtxt" class="jump">商品图文详情（点击查看）</span>
+        </a>
+        <div class="goodsdetail">
+            <p style="padding-bottom:10px"></p>
+            <div id="product-details" class="">
+                <div class="am-panel-bd am-padding-0" style="border-top: 0">
+                    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="padding-top:0px;margin-left:-10px;padding-left:10px;padding-right:10px;display:none">
+                        <div class="am-padding-top-sm" style="width:100%;overflow:auto;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--分享图片-->
+    <div class="nb-sharecanvas" style="display: none;">
+        <div class="nb-canvas">
+
+            <i class="icon-close" style=""></i>
+            <canvas id="sharecanvas" style="background-color:white;display:none; width:80%" class="am-text-center am-center" width="675" height="1017"></canvas>
+
+            <img src="" class="imgData" check-src="true" background="white" style="display: inline;">
+            <div class="nb-canvas-explain am-text-sm nb-text-white am-margin-top-sm am-padding-xs">
+                <span class="image_loading" style="display:none;color:#fff;font-size:13px;line-height:15px;padding-top:10px;padding-bottom:10px;text-align:center"><i></i>图文合成中，请耐心稍等片刻</span>
+                <span class="image_show" style="color:#fff;font-size:13px;text-align:center">  说明：长按上方图片发给朋友或保存图片。</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--二维码-->
+    <input style="display: none;" id="codeimageBase64" />
+
+
+    <!--淘口令-->
+    <div class="am-modal am-modal-no-btn am-modal-active" tabindex="-1" id="doc-modal-1" style="font-size: 12px;z-index: 9999999; display: none;">
+        <div class="am-modal-dialog fq-background-white">
+            <div class="am-modal-hd">
+                口令购买
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">&times;</a>
+            </div>
+            <div class="am-modal-bd  am-padding-0">
+
+                <!--口令-->
+                <!--二合一口令开始-->
+
+                <div class="am-margin-vertical am-margin-horizontal-lg">
+                    <div class="fq-goods-border am-text-center am-margin-top am-padding-vertical am-padding-horizontal-sm fq-background-white" style="margin:0;">
+                        <div class="fq-explain  am-center am-text-center">
+                            <span class="am-padding-horizontal-sm fq-nowrap " style="color:white; background:#f54d23">长按框内 &gt; 拷贝</span>
+                        </div>
+                        <div id="copy_key_ios" class="more_ktl" style="font-size:16px;height:24px;line-height:24px;"></div>
+                        <textarea style="display: none;height:40px;font-size:16px;line-height:24px;" id="copy_key_android" type="text" class="am-form-field am-text-center am-text-sm more_ktl" oninput="regain();"></textarea>
+                    </div>
+                </div>
+
+
+
+                <!--二合一口令结束-->
+                <div class="copy_taowords am-margin-bottom" style="">
+                    <div class="share_content am-margin-bottom am-badge-success am-badge" id="share_content"></div>
+                    <div class="am-text-center am-margin-top-sm ">
+                        <a class="am-padding-vertical-xs am-padding-horizontal-lg am-round am-inline-block share" id="copybtn" style="background: #f54d23; color: white;" data-taowords="">一键复制</a>
+                        <div class="am-margin-top-sm am-text-xs am-text-primary am-margin-horizontal-sm">点击复制后，请打开【手机APP】购买！</div>
+                    </div>
+                </div>
+                <div class="am-text-left am-text-xs am-padding-vertical-sm am-padding-horizontal-lg" style="background:#f3f3f3; border-radius:0 0 5px 5px;color:#86564B">
+                        <span>
+						<span>使用说明：</span>
+                            <span>复制口令后打开【手机APP】即可领取优惠券购买！</span>
+                        </span>
+                    <br>
+                    <span>
+						<span>温馨提示：</span>
+                            手机无【手机APP】者，可选择浏览器购买方式哦~
+                        </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--底部菜单-->
+    <div class="nbmenu">
+        <div class="nbnav nb-btn1"><a href="./"><i class="fa fa-home" style="font-size:12px"></i>&nbsp;首页</a></div>
+        <div class="nbnav nb-btn2" onclick="kf()"><i class="fa fa-user-circle" style="font-size:12px"></i>&nbsp;客服</div>
+        <div class="nbnav2 nb-btn3"><a  id="one" style="color:white;font-weight: bolder;">点击购买</a></div>
+        <div class="nbnav2 nb-btn4"><a  id="two" href="javascript:;"  style="color: #ffffff;font-size: 12px;font-weight:bolder;letter-spacing: 0px;">口令购买</a></div>
+    </div>
+
+    <!--回到顶部-->
+    <div class="backTop" onclick="gotop();">
+        <div class="go-top top-button-hide">
+            <span>顶部</span>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript"  src="./js/getUrlParam.js"></script>
+<script type="text/javascript" src="./js/amazeui.min.js"></script>
+<script type="text/javascript" src="./js/clipboard.min.js"></script>
+<script type="text/javascript" src="./js/layer/layer.js"></script>
+<script type="text/javascript" src="./js/superSearchDetail.js"></script>
+</body>
+</html>

@@ -31,32 +31,35 @@
     <div id="wrap_list" style="display: block;">
         <div class="search" style="position:fixed;top:0px;z-index:999;">
             <div class="search-box">
-                <form id="search-form" action="./index.php" method="get" onsubmit="return checkForm(this);">
+                <form id="search-form" action="./superSearch.html" method="get" onsubmit="return checkForm(this);">
+                    <input type="hidden" id="zn" name="zn">
+                    <input type="hidden" id="tm" name="tm">
+                    <input type="hidden" id="sortType" name="sortType">
+                    <input type="hidden" id="dpyhq" name="dpyhq">
                     <span class="search-icon"></span>
-                    <input class="search-ipt" type="text" name="keyword" id="J_QueryVal" placeholder="请输入关键词..">
+                    <input class="search-ipt" type="text" name="q" id="q" placeholder="请输入关键词..">
                     <button class="search-reset f16" type="button">×</button>
-
-
-                </form></div>
+                </form>
+            </div>
             <span class="search-cancel f14">返回</span>
         </div>
 
         <dl class="recommend" style="position:fixed;top:0.85rem;z-index:999;width:100%;max-width:9.99rem;padding:0px;background: #ebebeb;">
             <dd style="padding-top: .2rem;">
-                <div style="width:25%;float:left;text-align:center">
-                    <a href="" title="" class="f12" style="background: #f11;color: #fff;border-radius: .06667rem;">智能排序</a>
+                <div style="width:33.3%;float:left;text-align:center">
+                    <a id="znpx" href="javascript:;" class="f12" style="background: #f11;color: #fff;border-radius: .06667rem;">默认排序</a>
                 </div>
 
-                <div style="width:25%;float:left;text-align:center">
-                    <a href="" title="" class="f12" style="background: #fff;color: #404040;border-radius: .06667rem;">销量最高</a>
+                <div style="width:33.3%;float:left;text-align:center">
+                    <a id="xiaoliang" href="javascript:;" title="" class="f12" style="background: #fff;color: #404040;border-radius: .06667rem;">销量最高</a>
                 </div>
 
-                <div style="width:25%;float:left;text-align:center">
-                    <a href="" title="" class="f12" style="width:auto;color: #404040;border-radius: .06667rem;background:url('https://wx.yuedotech.cn/addons/bsht_tbk/res/images/tmall.png') no-repeat 20% 49% #fff;text-indent:2em">优先</a>
-                </div>
+               <!-- <div style="width:25%;float:left;text-align:center">
+                    <a id="tmyx" href="javascript:;" title="" class="f12" style="width:auto;color: #404040;border-radius: .06667rem;background:url('./images/tmall.png') no-repeat 20% 49% #fff;text-indent:2em">优先</a>
+                </div>-->
 
-                <div style="width:25%;float:left;text-align:center">
-                    <a href="=" title="" class="f12" style="background: #fff;color: #404040;border-radius: .06667rem;">只看有券</a>
+                <div style="width:33.3%;float:left;text-align:center">
+                    <a id="zkyq" href="javascript:;" title="" class="f12" style="background: #fff;color: #404040;border-radius: .06667rem;">只看有券</a>
                 </div>
             </dd>
         </dl>
@@ -65,17 +68,17 @@
         <div id="quanTemplate" style="display: none;">
             <li class="topdh3">
                 <div class="result-img">
-                    <a href="" style="color:#fff">&lt;img src="${picUrl}" alt="" /&gt;</a>
+                    <a href="${superDetailUrl}" style="color:#fff">&lt;img src="${picUrl}" alt="" /&gt;</a>
                 </div>
                 <div class="result-desc">
-                    <h3 class="f14" style="width: auto;"><a href="" style="color:#404040">&lt;img src="${iconUrl}" style="width:12px;height:12px;padding-right:3px" /&gt;${title}</a></h3>
+                    <h3 class="f14" style="width: auto;"><a href="${superDetailUrl}" style="color:#404040">&lt;img src="${iconUrl}" style="width:12px;height:12px;padding-right:3px" /&gt;${title}</a></h3>
                     <p class="f13">原价 &yen;
                         <del>
                             ${zkPrice}
                         </del> 已售${biz30day}件</p>
-                    <p class="f13">券后价 &yen; <strong class="f16">70</strong></p>
+                    <p class="f13">券后价 &yen; <strong class="f16">${couponPrice}</strong></p>
                     <p class="f13"><span>券<i>${couponAmount}元</i></span> 剩余${couponLeftCount}张</p>
-                    <button type="submit" class="f13 sstop" style="margin-top:20px" data-info="" style="color:#fff">查看详情</a></button>
+                    <button type="submit" class="f13 sstop" style="margin-top:20px" data-info=""><a href="${superDetailUrl}" style="color:#fff">查看详情</a></button>
                 </div>
             </li>
         </div>
@@ -83,17 +86,17 @@
         <div id="noquanTemplate" style="display: none;">
             <li class="topdh3">
                 <div class="result-img">
-                    <a href="" style="color:#fff">&lt;img src="${picUrl}" alt="" /&gt;</a>
+                    <a href="${superDetailUrl}" style="color:#fff">&lt;img src="${picUrl}" alt="" /&gt;</a>
                 </div>
                 <div class="result-desc">
-                    <h3 class="f14" style="width: auto;"><a href="" style="color:#404040">&lt;img src="${iconUrl}" style="width:12px;height:12px;padding-right:3px" /&gt;${title}</a></h3>
+                    <h3 class="f14" style="width: auto;"><a href="${superDetailUrl}" style="color:#404040">&lt;img src="${iconUrl}" style="width:12px;height:12px;padding-right:3px" /&gt;${title}</a></h3>
                     <p class="f13">原价 &yen;
                         <del>
                             ${zkPrice}
                         </del> 已售${biz30day}件</p>
-                    <p class="f13">券后价 &yen; <strong class="f16">70</strong></p>
-                    <p class="f13"><span>券<i>${couponAmount}元</i></span> 剩余${couponLeftCount}张</p>
-                    <button type="submit" class="f13 sstop" style="margin-top:20px" data-info="" style="color:#fff">查看详情</a></button>
+                    <p class="f13">优惠价 &yen; <strong class="f16">${zkPrice}</strong></p>
+                    <p class="f13">月销${biz30day}件</p>
+                    <button type="submit" class="f13 sstop" style="margin-top:20px" data-info=""><a href="${superDetailUrl}" style="color:#fff">查看详情</a></button>
                 </div>
             </li>
         </div>

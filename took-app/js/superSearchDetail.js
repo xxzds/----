@@ -13,104 +13,136 @@ $(function() {
     /*$('.allpreContainer').css('height', nbtoplrw2);*/
 });
 
-$(function() {
+$(function () {
+    //主图
+    $('#big-image>img').attr("src", UrlParm.parm('picUrl'));
+    //标题
+    $('#title').html(UrlParm.parm('title'));
+    //券后价
+    $('#couponPrice').html('￥' + UrlParm.parm('couponPrice'));
+    //现价
+    $('#price').html('原价 ￥' + UrlParm.parm('zkPrice'));
+    //优惠券
+    $('#quan').html('￥' + UrlParm.parm('quan'));
 
+    //商品主键
     $('#nbmore').attr('data-id', UrlParm.parm("numIid"));
+
+    //超级搜地址
+    $('.nb-so').attr('data-info','./superSearch.html?q='+encodeURIComponent(UrlParm.parm('title')));
+
+
+    //获取子标题
     $.ajax({
         type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/getitem/" + UrlParm.parm("id"),
+        url: "http://www.tooklili.com:81/tookApp/taobao/getItemSubTitleByItemId",
+        data: {
+            itemId: UrlParm.parm("numIid"),
+        },
         dataType: "json",
         success: function(result) {
-            if (!result.success) {
-                alert(result.message);
+            if(!result.success){
+                alert("调用接口失败");
                 return;
             }
-            var data = result.data;
-            console.log(data);
-            if (data == null || data.length <= 0) {
-                alert("暂无数据");
-                return;
-            }
-
-            //主图
-            $('#big-image>img').attr("src", data.picUrl);
-            //标题
-            $('#title').html(data.title);
-            //券后价
-            $('#couponPrice').html('￥' + data.couponPrice);
-            //现价
-            $('#price').html('原价 ￥' + data.price);
-            //优惠券
-            $('#quan').html('￥' + data.quan);
-            //销量
-            //$('#volume').html(data.volume);
-            $('.goodsdetail>p').html(data.intro);
-
-            //直接购买
-            var a = navigator.userAgent;
-            console.log(a);
-            if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
-                $('#one').attr('href', "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.quanUrl));
-            } else {
-                $('#one').attr('href', data.quanUrl);
-            }
-
-            //淘口令分享
-            $('#two').click(function() {
-                getTpwd(data.title, data.quanUrl, data.picUrl)
-
-            });
-
-            //超级搜地址
-            $('.nb-so').attr('data-info','./superSearch.html?q='+encodeURIComponent(data.title));
-
-
+            $('.goodsdetail>p').html(result.data);
         },
         error: function() {
             alert("网络异常");
         }
     });
 
-    /**
-     * 获取淘口令
-     * @param text
-     * @param url
-     */
-    function getTpwd(text, url, logo) {
-        $.ajax({
-            type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/tbk/getTPwd/",
-            data: {
-                text: text,
-                url: url,
-                logo: logo
-            },
-            dataType: "json",
-            success: function(result) {
 
-                if (!result.success) {
-                    alert(result.message);
-                    return;
-                }
-                var data = result.data;
-                console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "http://www.tooklili.com:81/tookApp/generatePromoteLink",
+        data: {
+            auctionid: UrlParm.parm("numIid"),
+        },
+        dataType: "json",
+        success: function(result) {
+            if(!result.success){
+                alert("调用接口失败");
+                return;
+            }
+            var goumaiUrl;
+            var shareToken;
 
+            var data = result.data;
+            if(data.couponLink==null || data.couponLink==''){
+                goumaiUrl = data.clickUrl
+                shareToken = data.taoToken;
+            }else{
+                goumaiUrl = data.couponLink;
+                shareToken = data.couponLinkTaoToken;
+            }
+
+            //直接购买
+            var a = navigator.userAgent;
+            console.log(a);
+            if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
+                $('#one').attr('href', "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(goumaiUrl));
+            } else {
+                $('#one').attr('href', goumaiUrl);
+            }
+
+            //淘口令分享
+            $('#two').click(function() {
                 //打开弹层
                 $('#doc-modal-1').modal({
                     relatedTarget: this,
                 });
-                $('#copy_key_android').val(data);
-                $('#copy_key_ios').html(data);
-                $("#copybtn").attr('data-taowords', data);
+                $('#copy_key_android').val(shareToken);
+                $('#copy_key_ios').html(shareToken);
+                $("#copybtn").attr('data-taowords', shareToken);
 
-            },
-            error: function() {
-                alert("网络异常");
-            }
-        });
-    }
+            });
+        },
+        error: function() {
+            alert("网络异常");
+        }
+    });
 
 });
+
+/**
+ * 获取淘口令
+ * @param text
+ * @param url
+ */
+function getTpwd(text, url, logo) {
+    $.ajax({
+        type: "POST",
+        url: "http://www.tooklili.com:81/tookApp/tbk/getTPwd/",
+        data: {
+            text: text,
+            url: url,
+            logo: logo
+        },
+        dataType: "json",
+        success: function(result) {
+
+            if (!result.success) {
+                alert(result.message);
+                return;
+            }
+            var data = result.data;
+            console.log(data);
+
+            //打开弹层
+            $('#doc-modal-1').modal({
+                relatedTarget: this,
+            });
+            $('#copy_key_android').val(data);
+            $('#copy_key_ios').html(data);
+            $("#copybtn").attr('data-taowords', data);
+
+        },
+        error: function() {
+            alert("网络异常");
+        }
+    });
+};
 
 $(function() {
     var taokouling_value = document.getElementById("copy_key_android").value;
@@ -415,6 +447,7 @@ $(function() {
             });
         });
     //采集pics
+    $('#nbmore').trigger("click");
 });
 
 var code = "<img style='width: 240px;height: auto;' src='./images/IMG_1543.JPG'/>";
@@ -437,55 +470,6 @@ function kf() {
     $('.layer-anim').css('margin', 'auto');
 
 }
-
-//本栏目更多精品
-$(function(){
-    $.ajax({
-        type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/getRandomItemByCateId",
-        dataType: "json",
-        data:{
-            cateId:UrlParm.parm("cateId"),
-            size:4
-        },
-        success: function (result) {
-
-            var html="";
-            var data = result.data;
-            var template = $('#moreItemTemplate').html();
-
-            if(data.length>0){
-                data.forEach(function (value,index) {
-                    var itemDetailUrl='./itemDetail.html?numIid='+value.numIid+"&id="+value.id+"&cateId="+value.cateId;
-                    html+=template.replace(/\${itemDetailUrl}/g,itemDetailUrl)
-                        .replace("${picUrl}",value.picUrl)
-                        .replace("${couponPrice}",value.couponPrice)
-                        .replace("${volume}",parseInt(value.volume)+parseInt(100))
-                        .replace("${quan}",value.quan)
-                        .replace("${title}",value.title)
-                        .replace("&lt;","<")
-                        .replace("&gt;",">");
-                });
-            }
-            $('#list_box').html(html);
-
-            //设置图片的宽度和高度相等
-            $('.loazd').each(function () {
-                $(this).css('height',$(this).css('width'));
-            });
-        },
-        error: function () {
-            alert("网络异常");
-        }
-    });
-
-    //屏幕改变时，改变图片的高度
-    window.onresize=function(){
-        $('.loazd').each(function () {
-            $(this).css('height',$(this).css('width'));
-        });
-    }
-});
 
 //超级搜
 $(function(){

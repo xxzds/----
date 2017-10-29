@@ -207,15 +207,175 @@ input, select, textarea {
 .result-desc button {
     position: absolute;
     top: 1.5rem;
+    right: .33333rem;
     padding: .16667rem .56667rem;
     border: none;
     border-radius: .06667rem;
+    background: #f50;
     color: #fff;
-    margin-top: 20px;
-    background: #f80;
-    right: .12222rem;
 }
 
 .results li {
-    height: 3.05rem;
+    height: 3.14rem;
+}
+
+/*动画*/
+.topdh{
+    animation: clipAni 0.5s;
+    -moz-animation: clipAni 0.5s;	/* Firefox */
+    -webkit-animation: clipAni 0.5s;	/* Safari 和 Chrome */
+    -o-animation: clipAni 0.5s;	/* Opera */
+}
+@keyframes clipAni
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-moz-keyframes clipAni /* Firefox */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes clipAni /* Safari 和 Chrome */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-o-keyframes clipAni /* Opera */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+.topdh2{
+    animation: clipAni 0.8s;
+    -moz-animation: clipAni 0.8s;	/* Firefox */
+    -webkit-animation: clipAni 0.8s;	/* Safari 和 Chrome */
+    -o-animation: clipAni 0.8s;	/* Opera */
+}
+@keyframes clipAni
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-moz-keyframes clipAni /* Firefox */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes clipAni /* Safari 和 Chrome */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-o-keyframes clipAni /* Opera */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+.topdh3{
+    animation: clipAni 1s;
+    -moz-animation: clipAni 1s;	/* Firefox */
+    -webkit-animation: clipAni 1s;	/* Safari 和 Chrome */
+    -o-animation: clipAni 1s;	/* Opera */
+}
+@keyframes clipAni
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-moz-keyframes clipAni /* Firefox */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes clipAni /* Safari 和 Chrome */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-o-keyframes clipAni /* Opera */
+{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
 }
