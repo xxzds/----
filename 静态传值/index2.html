@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./js/getUrlParam.js"></script>
+</head>
+<body>
+<script>
+    var a = UrlParam.paramValues("a");
+    console.log(a);
+
+    var param = $.cookie("a");
+    console.log(param);
+
+
+  /*  var content = window.opener.document.getElementById("open").innerHTML;
+    alert(content);*/
+
+    var value = localStorage["name"];
+    alert(value);
+</script>
+</body>
+</html>

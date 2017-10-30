@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./js/test.js"></script>
+</head>
+<body>
+    <a href="./index2.html?a=1&a=2&username=zhangsan&password=123&=">跳转</a>
+    <br>
+    <button id="open">打开新的页面</button>
+    <br>
+    <input type="text" name="username" />
+    <input type="button" name="" value="post" onclick="set()"/>
+
+    <script>
+        $.cookie("a","12");
+
+        $('#open').click(function () {
+            window.open('./index2.html')
+        })
+
+
+        function set() {
+            //由于是一个新的技术，你可以通过下面的代码检测你的浏览器是否支持
+            if (window.localStorage) {
+                //存储变量的值
+                localStorage.name = document.all.username.value;
+                location.href = './index2.html';
+            } else {
+                alert("NOT SUPPORT");
+            }
+        }
+    </script>
+</body>
+</html>
