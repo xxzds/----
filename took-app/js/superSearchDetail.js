@@ -55,7 +55,7 @@ $(function () {
 
     $.ajax({
         type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/generatePromoteLink",
+        url: "http://www.tooklili.com:81/tookApp/getTwdAndShortLinkInfo",
         data: {
             auctionid: UrlParm.parm("numIid"),
         },
@@ -67,14 +67,24 @@ $(function () {
             }
             var goumaiUrl;
             var shareToken;
+            var content;
 
             var data = result.data;
+            content=$('#title').html();
+            content+="\n【在售价】"+UrlParm.parm('zkPrice')+"元"
+            content+="\n【券后价】"+UrlParm.parm('couponPrice')+"元";
             if(data.couponLink==null || data.couponLink==''){
-                goumaiUrl = data.clickUrl
-                shareToken = data.taoToken;
+                goumaiUrl = data.clickUrl;
+                shareToken= data.taoToken;
+                content+="\n【下单链接】"+data.customShortLinkUrl;
+                content+="\n-----------------";
+                content+="\n复制这条信息，"+data.taoToken+" ，打开【手机淘宝】即可查看";
             }else{
                 goumaiUrl = data.couponLink;
-                shareToken = data.couponLinkTaoToken;
+                shareToken=data.couponLinkTaoToken;
+                content+="\n【下单链接】"+data.customCouponShortLinkUrl;
+                content+="\n-----------------";
+                content+="\n复制这条信息，"+data.couponLinkTaoToken+" ，打开【手机淘宝】即可查看";
             }
 
             //直接购买
@@ -94,7 +104,7 @@ $(function () {
                 });
                 $('#copy_key_android').val(shareToken);
                 $('#copy_key_ios').html(shareToken);
-                $("#copybtn").attr('data-taowords', shareToken);
+                $("#copybtn").attr('data-taowords', content);
 
             });
         },

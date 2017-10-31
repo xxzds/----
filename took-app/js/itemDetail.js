@@ -14,6 +14,8 @@ $(function() {
 });
 
 $(function() {
+    var price;  //在售价
+    var couponPrice;  //券后价
 
     $('#nbmore').attr('data-id', UrlParm.parm("numIid"));
     $.ajax({
@@ -38,8 +40,10 @@ $(function() {
             $('#title').html(data.title);
             //券后价
             $('#couponPrice').html('￥' + data.couponPrice);
+            couponPrice=data.couponPrice;
             //现价
             $('#price').html('原价 ￥' + data.price);
+            price=data.price;
             //优惠券
             $('#quan').html('￥' + data.quan);
             //销量
@@ -79,7 +83,7 @@ $(function() {
     function getTpwd(text, url, logo) {
         $.ajax({
             type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/tbk/getTPwd/",
+            url: "http://www.tooklili.com:81/tookApp/tbk/getTpwdAndShortLink/",
             data: {
                 text: text,
                 url: url,
@@ -95,13 +99,21 @@ $(function() {
                 var data = result.data;
                 console.log(data);
 
+                //复制的内容
+                var content=$('#title').html();
+                content+="\n【在售价】"+price+"元"
+                content+="\n【券后价】"+couponPrice+"元";
+                content+="\n【下单链接】"+data.couponShortLinkUrl;
+                content+="\n-----------------";
+                content+="\n复制这条信息，"+data.couponLinkTaoToken+" ，打开【手机淘宝】即可查看";
+
                 //打开弹层
                 $('#doc-modal-1').modal({
                     relatedTarget: this,
                 });
-                $('#copy_key_android').val(data);
-                $('#copy_key_ios').html(data);
-                $("#copybtn").attr('data-taowords', data);
+                $('#copy_key_android').val(data.couponLinkTaoToken);
+                $('#copy_key_ios').html(data.couponLinkTaoToken);
+                $("#copybtn").attr('data-taowords', content);
 
             },
             error: function() {
