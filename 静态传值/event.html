@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id='div' onclick='alert("div");'>
-        <ul onclick='alert("ul");'>
-            <li onclick='alert("li");'>test</li>
-        </ul>
-    </div>
-
+<div id='div' onclick='alert("div");'>
+    <ul onclick='alert("ul");'>
+        <li onclick='alert("li");'>
+            <a href="http://www.tooklili.com:81/took-app"id="testB">took-app</a>
+        </li>
+    </ul>
+</div>
+<script>
+    $('#testB').on('click',function () {
+        return false;
+    });
+</script>
 </body>
 </html>
