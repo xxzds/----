@@ -33,7 +33,7 @@ $(function () {
 
 
     //获取子标题
-    $.ajax({
+   /* $.ajax({
         type: "POST",
         url: "http://www.tooklili.com:81/tookApp/taobao/getItemSubTitleByItemId",
         data: {
@@ -50,7 +50,7 @@ $(function () {
         error: function() {
             alert("网络异常");
         }
-    });
+    });*/
 
 
     $.ajax({
@@ -114,45 +114,6 @@ $(function () {
     });
 
 });
-
-/**
- * 获取淘口令
- * @param text
- * @param url
- */
-function getTpwd(text, url, logo) {
-    $.ajax({
-        type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/tbk/getTPwd/",
-        data: {
-            text: text,
-            url: url,
-            logo: logo
-        },
-        dataType: "json",
-        success: function(result) {
-
-            if (!result.success) {
-                alert(result.message);
-                return;
-            }
-            var data = result.data;
-            console.log(data);
-
-            //打开弹层
-            $('#doc-modal-1').modal({
-                relatedTarget: this,
-            });
-            $('#copy_key_android').val(data);
-            $('#copy_key_ios').html(data);
-            $("#copybtn").attr('data-taowords', data);
-
-        },
-        error: function() {
-            alert("网络异常");
-        }
-    });
-};
 
 $(function() {
     var taokouling_value = document.getElementById("copy_key_android").value;
