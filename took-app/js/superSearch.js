@@ -67,7 +67,7 @@ $(function(){
     function search() {
         $.ajax({
             type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/superSearchItems",
+            url: prefix_url+"superSearchItems",
             data:$('#search-form').serialize(),
             dataType: "json",
             success: function(result) {

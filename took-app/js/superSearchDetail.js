@@ -55,7 +55,7 @@ $(function () {
 
     $.ajax({
         type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/getTwdAndShortLinkInfo",
+        url: prefix_url+"getTwdAndShortLinkInfo",
         data: {
             auctionid: UrlParm.parm("numIid"),
         },
@@ -213,7 +213,7 @@ $(function() {
         //生成二维码
         $.ajax({
             type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/getQrCodeBase64",
+            url: prefix_url+"getQrCodeBase64",
             data: {
                 url: window.location.href
             },

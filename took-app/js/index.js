@@ -16,7 +16,7 @@ var dropload = $('.container-fluid').dropload({
 
         $.ajax({
             type : "POST",
-            url : "http://www.tooklili.com:81/tookApp/couponItems",
+            url : prefix_url+"couponItems",
             data : {
                 cateId : cateId,
                 currentPage : page,
@@ -65,7 +65,7 @@ var dropload = $('.container-fluid').dropload({
     loadUpFn:function (me) {
         $.ajax({
             type : "POST",
-            url : "http://www.tooklili.com:81/tookApp/couponItems",
+            url : prefix_url+"couponItems",
             data : {
                 cateId : cateId,
                 currentPage : 1,

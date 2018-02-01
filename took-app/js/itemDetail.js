@@ -20,7 +20,7 @@ $(function() {
     $('#nbmore').attr('data-id', UrlParm.parm("numIid"));
     $.ajax({
         type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/getitem/" + UrlParm.parm("id"),
+        url: prefix_url+"getitem/" + UrlParm.parm("id"),
         dataType: "json",
         success: function(result) {
             if (!result.success) {
@@ -83,7 +83,7 @@ $(function() {
     function getTpwd(text, url, logo) {
         $.ajax({
             type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/tbk/getTpwdAndShortLink/",
+            url:  prefix_url+"tbk/getTpwdAndShortLink/",
             data: {
                 text: text,
                 url: url,
@@ -222,7 +222,7 @@ $(function() {
         //生成二维码
         $.ajax({
             type: "POST",
-            url: "http://www.tooklili.com:81/tookApp/getQrCodeBase64",
+            url:  prefix_url+"getQrCodeBase64",
             data: {
                 url: window.location.href
             },
@@ -454,7 +454,7 @@ function kf() {
 $(function(){
     $.ajax({
         type: "POST",
-        url: "http://www.tooklili.com:81/tookApp/getRandomItemByCateId",
+        url:  prefix_url+"getRandomItemByCateId",
         dataType: "json",
         data:{
             cateId:UrlParm.parm("cateId"),
