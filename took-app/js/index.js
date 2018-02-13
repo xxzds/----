@@ -2,10 +2,35 @@
 var page=0;
 
 //类别
-var cateId=35;
+var cateId;
 
 //每页展示的个数
 var size=10;
+
+$.ajax({
+    type : "POST",
+    url : prefix_url+"queryItemCates",
+    dataType: "json",
+    async:false,
+    success : function(result) {
+        if(result.success){
+            var data = result.data;
+
+            cateId = data[0].id;
+
+            var html ='';
+            data.forEach(function (value,index) {
+                html += '<a href="javascript:;" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
+            });
+            $('#footer').html(html);
+        }
+    },
+    error:function(){
+
+    }
+});
+
+
 
 var template = $('#template').html();
 var dropload = $('.container-fluid').dropload({

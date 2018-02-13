@@ -1,1 +1,1 @@
-var prefix_url = 'http://localhost:9999/tookApp/';
+var prefix_url = 'http://www.tooklili.com:81/tookApp/';
