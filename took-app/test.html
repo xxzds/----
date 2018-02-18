@@ -5,6 +5,167 @@
     <title>Title</title>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <style>
+        Skip to content
+        Features
+        Business
+        Explore
+        Marketplace
+        Pricing
+        This repository
+        Search
+        Sign in or Sign up
+        12 3 3 aliceui/tab
+                       Code  Issues 0  Pull requests 0  Projects 0  Insights
+                                                                    tab/index.css
+                                                                        e0c7f6b  on 17 Sep 2014
+        @sorrycc sorrycc 1.1.0, migrate to spm3
+
+        70 lines (58 sloc)  1.12 KB
+            /* alice.tab 样式模块 */
+
+        @charset "utf-8";
+
+        .ui-tab {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ui-tab ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ui-tab li {
+            list-style: none;
+            vertical-align: top;
+            position: relative;
+            top: 1px;
+        }
+
+        .ui-tab-items {
+            border-bottom: 1px solid #E5E5E5;
+            font-size: 14px;
+        }
+
+        .ui-tab-item {
+            display: inline-block;
+            display: inline\0; /* fix https://github.com/aliceui/tab/issues/1 */
+            *display: inline;
+            *zoom: 1;
+            *margin-right: 4px;
+        }
+
+        .ui-tab-item a {
+            border-radius: 3px 3px 0 0;
+            background: #fff;
+            line-height: 32px;
+            height: 32px;
+            padding: 0 10px;
+            border: 1px solid #E5E5E5;
+            border-bottom: none;
+            color: #4D4D4D;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            transition: background-color 0.4s ease-out, color 0.4s ease-out;
+        }
+
+        .ui-tab-item a,
+        .ui-tab-item a:hover,
+        .ui-tab-item a:active {
+            color: #4D4D4D;
+        }
+
+        .ui-tab-item-current a {
+            font-weight: bold;
+            height: 33px;
+        }
+
+        .ui-tab-item a:hover {
+            background: #f6f6f6;
+            text-decoration: none;
+        }
+
+        .ui-tab-item-current a:hover {
+            background: #fff;
+        }
+
+
+
+
+        body,td,th,ul,li{
+            font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+            padding:0;
+            margin:0;
+        }
+        a {
+            color: #333;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .find_nav {
+            width: 100%;
+            height: 70px;
+            background-color: #f9f9f9;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            border-bottom: 1px solid #ddd;
+            display: -moz-box;
+            display: -webkit-box;
+            display: box;
+        }
+        .find_nav_left {
+            height: 70px;
+            position: relative;
+            overflow: hidden;
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+        }
+        .find_nav_list {
+            position: absolute;
+            left: 0;
+        }
+        .find_nav_list ul {
+            position: relative;
+            white-space: nowrap;
+            font-size: 0;
+        }
+        .find_nav_list ul li {
+            display: inline-block;
+            padding: 0;
+            margin:0 20px;
+        }
+        .find_nav_list ul li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 70px;
+            font-size: 24px;
+            text-align: center;
+            color: #666;
+        }
+        .find_nav_cur a {
+            color: #48a5f4 !important;
+        }
+        .find_nav_list a.active{ color:#C00}
+        .sideline {
+            display: block;
+            position: absolute;
+            border: 0;
+            height: 2px;
+            background-color: #48a5f4;
+            left: 0;
+            top: 68px;
+            pointer-events: none;
+        }
+        .li_list{ min-height:800px; font-size:40px; line-height:800px; color:#fff; text-align:center}
+        .swipe{ padding:70px 0 0 0;}
+
+    </style>
 </head>
 <body>
 <!--经测试loaction.search只能获取get传输的参数，因get传输的参数在url上-->
@@ -12,6 +173,60 @@
     name:<input type="text" id="user" name="user" />
     password:<input type="password" id="password" name="password"/>
     <input type="button" id="tijiao" value="提交"/>
+
+    <div class="ui-tab">
+        <ul class="ui-tab-items">
+            <li class="ui-tab-item ui-tab-item-current">
+                <a href="javascript:;">全部交易</a>
+            </li>
+            <li class="ui-tab-item">
+                <a href="javascript:;">进行中的交易</a>
+            </li>
+            <li class="ui-tab-item">
+                <a href="javascript:;">等待发货的交易</a>
+            </li>
+            <li class="ui-tab-item">
+                <a href="javascript:;">未确认收获的交易</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="find_nav">
+        <div class="find_nav_left">
+            <div class="find_nav_list" id="pagenavi1" style="left: 0px;">
+                <ul>
+
+                    <li class=""><a href="#" class="">每日更新</a></li>
+                    <li class="find_nav_cur"><a href="#" class="">精品首推</a></li>
+                    <li class=""><a href="#" class="">时尚包包</a></li>
+                    <li><a href="#">T恤</a></li>
+                    <li><a href="#">运动品牌</a></li>
+                    <li><a href="#">香水化妆品</a></li>
+                    <li><a href="#">阿迪达斯</a></li>
+                    <li><a href="#">耐克</a></li>
+                    <li><a href="#">范思哲</a></li>
+                    <li><a href="#">古驰</a></li>
+                    <li class="sideline" style="left: 136px; width: 96px;"></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div id="slider1" class="swipe" style="overflow: hidden; visibility: visible; list-style: none; position: relative;">
+        <ul class="box01_list" style="position: relative; transition: left 0ms ease-out; width: 12650px; left: -1265px;">
+            <li class="li_list" style="background: rgb(219, 117, 117); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">1</li>
+            <li class="li_list" style="background: rgb(117, 177, 64); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">2</li>
+            <li class="li_list" style="background: rgb(177, 107, 64); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">3</li>
+            <li class="li_list" style="background: rgb(64, 83, 177); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">4</li>
+            <li class="li_list" style="background: rgb(177, 64, 128); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">5</li>
+            <li class="li_list" style="background: rgb(77, 209, 179); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">6</li>
+            <li class="li_list" style="background: rgb(190, 163, 14); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">7</li>
+            <li class="li_list" style="background: rgb(134, 91, 179); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">8</li>
+            <li class="li_list" style="background: rgb(105, 176, 63); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">9</li>
+            <li class="li_list" style="background: rgb(194, 94, 40); width: 1265px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">10</li>
+        </ul>
+
+    </div>
 </form>
 
 <script>

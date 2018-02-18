@@ -16,6 +16,8 @@ $(function() {
 $(function() {
     var price;  //在售价
     var couponPrice;  //券后价
+    var jumpUrl;  //直接购买地址
+    var content;  //复制的内容
 
     $('#nbmore').attr('data-id', UrlParm.parm("numIid"));
     $.ajax({
@@ -51,17 +53,23 @@ $(function() {
             $('.goodsdetail>p').html(data.intro);
 
             //直接购买
-            var a = navigator.userAgent;
-            console.log(a);
-            if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
-                $('#one').attr('href', "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.quanUrl));
-            } else {
-                $('#one').attr('href', data.quanUrl);
-            }
+            // var a = navigator.userAgent;
+            // console.log(a);
+            // if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
+            //     $('#one').attr('href', "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.quanUrl));
+            // } else {
+            //     $('#one').attr('href', data.quanUrl);
+            // }
+
+            //直接购买
+            $('#one').click(function(){
+                getTwdAndShortLinkInfo(data.numIid,1);
+            });
 
             //淘口令分享
             $('#two').click(function() {
-                getTpwd(data.title, data.quanUrl, data.picUrl)
+                //getTpwd(data.title, data.quanUrl, data.picUrl)
+                getTwdAndShortLinkInfo(data.numIid,2);
 
             });
 
@@ -74,6 +82,78 @@ $(function() {
             alert("网络异常");
         }
     });
+
+    /**
+     * 获取淘口令和短链接
+     */
+    function getTwdAndShortLinkInfo(numIid,type){
+        if(type == 1 && jumpUrl != null){
+            window.location.href = jumpUrl;
+            return;
+        }
+        if(type ==2 && content != null){
+            //打开弹层
+            $('#doc-modal-1').modal({
+                relatedTarget: this,
+            });
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: prefix_url+"getTwdAndShortLinkInfo",
+            data: {
+                auctionid: numIid,
+            },
+            dataType: "json",
+            success: function(result) {
+                if(!result.success){
+                    alert("调用接口失败");
+                    return;
+                }
+                var data = result.data;
+
+                var a = navigator.userAgent;
+                if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
+                    jumpUrl = "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.couponLink);
+                } else {
+                   jumpUrl = data.couponLink;
+                }
+
+                //复制的内容
+                content=$('#title').html();
+                content+="\n【在售价】"+price+"元"
+                content+="\n【券后价】"+couponPrice+"元";
+                content+="\n【下单链接】"+data.customCouponShortLinkUrl;
+                content+="\n-----------------";
+                content+="\n复制这条信息，"+data.couponLinkTaoToken+" ，打开【手机淘宝】即可查看";
+
+
+                $('#copy_key_android').val(data.couponLinkTaoToken);
+                $('#copy_key_ios').html(data.couponLinkTaoToken);
+                $("#copybtn").attr('data-taowords', content);
+
+                if(type == 1 && jumpUrl != null){
+                    window.location.href = jumpUrl;
+                    return;
+                }
+                if(type ==2 && content != null){
+                    //打开弹层
+                    $('#doc-modal-1').modal({
+                        relatedTarget: this,
+                    });
+                    return;
+                }
+
+
+            },
+            error: function() {
+                debugger;
+                alert("网络异常");
+            }
+        });
+    }
+
 
     /**
      * 获取淘口令
