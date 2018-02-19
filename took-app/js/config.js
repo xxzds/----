@@ -1,1 +1,3 @@
-var prefix_url = 'http://www.tooklili.com:81/tookApp/';
+var protocol = window.location.protocol;
+var host = window.location.host;
+var prefix_url = protocol +"//"+host + '/tookApp/';
