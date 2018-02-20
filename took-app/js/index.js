@@ -16,11 +16,15 @@ $.ajax({
         if(result.success){
             var data = result.data;
 
-            cateId = data[0].id;
+            if(UrlParm.parm('cateId')){
+                cateId = UrlParm.parm('cateId');
+            }else if(! UrlParm.parm('keyWords')){
+                cateId = data[0].id;
+            }
 
             var html ='';
-            data.forEach(function (value,index) {
-                if(index ==0 ){
+            data.forEach(function (value) {
+                if(cateId && cateId == value.id){
                     html += '<a href="javascript:;" id="id'+value.id+'" class="item cur" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
                 }else{
                     html += '<a href="javascript:;" id="id'+value.id+'" class="item" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
@@ -38,10 +42,14 @@ $.ajax({
 
 
 var keyWords =null;
+if(UrlParm.parm('keyWords')){
+    keyWords = UrlParm.parm('keyWords');
+    $('#keyWords').val(keyWords);
+}
 var template = $('#template').html();
 var dropload = $('#content').dropload({
     scrollArea : window,
-
+    autoLoad : true,
     loadDownFn : function(me){
         page++;
 
@@ -91,6 +99,14 @@ var dropload = $('#content').dropload({
                 $('.lists').append(html);
                 // 每次数据加载完，必须重置
                 me.resetload();
+
+
+                if(keyWords ==null || keyWords == ''){
+                    history.pushState(null,null,location.pathname+"?cateId="+cateId);
+                }else{
+                    history.pushState(null,null,location.pathname+"?keyWords="+keyWords);
+                }
+
             },
             error:function(){
                 alert("网络异常");
@@ -101,6 +117,8 @@ var dropload = $('#content').dropload({
 
     },
     loadUpFn:function (me) {
+        // 重置页数，重新获取loadDownFn的数据
+        page = 1;
         var url='';
         if(keyWords ==null || keyWords == ''){
             url = prefix_url+"couponItems";
@@ -139,13 +157,15 @@ var dropload = $('#content').dropload({
                 // 每次数据加载完，必须重置
                 me.resetload();
 
-                // 重置页数，重新获取loadDownFn的数据
-                page = 1;
                 // 解锁loadDownFn里锁定的情况
                 me.unlock();
                 me.noData(false);
 
-
+                if(keyWords ==null || keyWords == ''){
+                    history.pushState(null,null,location.pathname+"?cateId="+cateId);
+                }else{
+                    history.pushState(null,null,location.pathname+"?keyWords="+keyWords);
+                }
             },
             error:function(){
                 alert("网络异常");
@@ -156,6 +176,7 @@ var dropload = $('#content').dropload({
     },
     threshold : 50
 });
+
 
 /**
  * tab的点击事件
