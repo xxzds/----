@@ -25,9 +25,9 @@ $.ajax({
             var html ='';
             data.forEach(function (value) {
                 if(cateId && cateId == value.id){
-                    html += '<a href="javascript:;" id="id'+value.id+'" class="item cur" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
+                    html += '<a href="javascript:;" style="overflow: hidden;" id="id'+value.id+'" class="item cur" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
                 }else{
-                    html += '<a href="javascript:;" id="id'+value.id+'" class="item" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
+                    html += '<a href="javascript:;" style="overflow: hidden;" id="id'+value.id+'" class="item" onclick="clickCate('+value.id+');">'+value.itemCateName+'</a>'
                 }
 
             });

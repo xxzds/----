@@ -89,37 +89,35 @@ $(function(){
 
                 data.forEach(function (value) {
                     var superDetailUrl='./superSearchDetail.html?title='+encodeURIComponent(value.title)
-                        +"&picUrl="+encodeURIComponent(value.pictUrl)
-                    +"&zkPrice="+encodeURIComponent(value.zkPrice)
-                    +"&numIid="+encodeURIComponent(value.auctionId)
-                    +"&couponPrice="+encodeURIComponent((value.zkPrice - value.couponAmount).toFixed(2))
-                    +"&quan="+encodeURIComponent(value.couponAmount);
-                    var couponAmount =value.couponAmount;
+                        +"&picUrl="+encodeURIComponent(value.picUrl)
+                    +"&zkPrice="+encodeURIComponent(value.couponPrice)
+                    +"&numIid="+encodeURIComponent(value.numIid)
+                    +"&couponPrice="+encodeURIComponent((value.couponPrice - value.quan).toFixed(2))
+                    +"&quan="+encodeURIComponent(value.quan);
+                    var couponAmount =value.quan;
                     if(couponAmount>0){  //有优惠券
                         template=quanTemplate;
                     }else{
                         template=noquanTemplate;
                     }
 
-                    var userType = value.userType;
-                    if(userType==0){//淘宝
+                    var shopType = value.shopType;
+                    if(shopType=='C'){//淘宝
                         template = template.replace('${iconUrl}','./images/taobao.png');
-                    }else if(userType==1){ //天猫
+                    }else if(shopType=='B'){ //天猫
                         template = template.replace('${iconUrl}','./images/tmall.png');
                     }
 
-                    html+=template.replace("${picUrl}",value.pictUrl)
-                        .replace("${couponPrice}",(value.zkPrice - value.couponAmount).toFixed(2))
-                        .replace(/\${zkPrice}/g,value.zkPrice)
-                        .replace(/\${biz30day}/g,value.biz30day)
+                    html+=template.replace("${picUrl}",value.picUrl)
+                        .replace("${couponPrice}",(value.couponPrice - value.quan).toFixed(2))
+                        .replace(/\${zkPrice}/g,value.couponPrice)
+                        .replace(/\${biz30day}/g,value.volume)
                         .replace('${title}',value.title)
-                        .replace("${couponAmount}",value.couponAmount)
-                        .replace("${couponLeftCount}",value.couponLeftCount)
+                        .replace("${couponAmount}",value.quan)
+                        .replace("${couponLeftCount}",value.quanReceive)
                         .replace(/\${superDetailUrl}/g,superDetailUrl)
                         .replace(/&lt;/g,"<")
                         .replace(/&gt;/g,">");
-
-
 
                 });
 

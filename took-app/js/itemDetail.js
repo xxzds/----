@@ -115,21 +115,21 @@ $(function() {
 
                 var a = navigator.userAgent;
                 if (a.indexOf('wechat') > -1 || a.indexOf("MicroMessenger") > -1) {
-                    jumpUrl = "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.couponLink);
+                    jumpUrl = "http://www.tooklili.com:81/taobao?backurl=" + encodeURIComponent(data.couponLink || data.clickUrl);
                 } else {
-                   jumpUrl = data.couponLink;
+                   jumpUrl = data.couponLink || data.clickUrl;
                 }
 
                 //复制的内容
                 content=$('#title').html();
                 content+="\n【在售价】"+price+"元"
                 content+="\n【券后价】"+couponPrice+"元";
-                content+="\n【下单链接】"+data.customCouponShortLinkUrl;
+                content+="\n【下单链接】"+ (data.customCouponShortLinkUrl || data.shortLinkUrl);
                 content+="\n-----------------";
-                content+="\n复制这条信息，"+data.couponLinkTaoToken+" ，打开【手机淘宝】即可查看";
+                content+="\n复制这条信息，"+(data.couponLinkTaoToken || data.taoToken)+" ，打开【手机淘宝】即可查看";
 
 
-                $('#copy_key_android').val(data.couponLinkTaoToken);
+                $('#copy_key_android').val(data.couponLinkTaoToken || data.taoToken);
                 $('#copy_key_ios').html(data.couponLinkTaoToken);
                 $("#copybtn").attr('data-taowords', content);
 
